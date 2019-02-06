@@ -52,6 +52,7 @@ namespace WindowsFormsApp1
             float quantity =float.Parse(txtPrice.Text);
             int supplier = Convert.ToInt16(txtSupplier.Text);
             string status = "A";
+            //git working?
 
             Stock newStock = new Stock(StockId, name,description, amount, quantity, supplier, status);
             newStock.AddStock();
