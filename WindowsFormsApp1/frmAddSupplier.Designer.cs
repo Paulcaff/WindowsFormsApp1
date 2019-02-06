@@ -156,7 +156,7 @@
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.Size = new System.Drawing.Size(179, 20);
             this.txtSupplierName.TabIndex = 9;
-            this.txtSupplierName.Validating += new System.ComponentModel.CancelEventHandler(this.txtSupplierName_Validating);
+            
             // 
             // txtAddressLine1
             // 
@@ -164,7 +164,7 @@
             this.txtAddressLine1.Name = "txtAddressLine1";
             this.txtAddressLine1.Size = new System.Drawing.Size(178, 20);
             this.txtAddressLine1.TabIndex = 10;
-            this.txtAddressLine1.Validating += new System.ComponentModel.CancelEventHandler(this.txtAddressLine1_Validating);
+           
             // 
             // txtAddressLine2
             // 
@@ -172,7 +172,7 @@
             this.txtAddressLine2.Name = "txtAddressLine2";
             this.txtAddressLine2.Size = new System.Drawing.Size(177, 20);
             this.txtAddressLine2.TabIndex = 11;
-            this.txtAddressLine2.Validating += new System.ComponentModel.CancelEventHandler(this.txtAddressLine2_Validating);
+           
             // 
             // txtTown
             // 
@@ -180,7 +180,7 @@
             this.txtTown.Name = "txtTown";
             this.txtTown.Size = new System.Drawing.Size(176, 20);
             this.txtTown.TabIndex = 12;
-            this.txtTown.Validating += new System.ComponentModel.CancelEventHandler(this.txtTown_Validating);
+            
             // 
             // txtCounty
             // 
@@ -188,7 +188,7 @@
             this.txtCounty.Name = "txtCounty";
             this.txtCounty.Size = new System.Drawing.Size(174, 20);
             this.txtCounty.TabIndex = 13;
-            this.txtCounty.Validating += new System.ComponentModel.CancelEventHandler(this.txtCounty_Validating);
+            
             // 
             // txtEmail
             // 
@@ -196,7 +196,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(175, 20);
             this.txtEmail.TabIndex = 14;
-            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
+          
             // 
             // txtPhone
             // 

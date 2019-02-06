@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
         public frmUpdateSupplier()
         {
             InitializeComponent();
+           
         }
 
         public frmUpdateSupplier(frmMainMenu Parent)
@@ -38,15 +39,7 @@ namespace WindowsFormsApp1
 
         private void frmUpdateSupplier_Load(object sender, EventArgs e)
         {
-            /* string name = txtSupplierName.Text;
-             string add1 = txtAddressLine1.Text;
-             string add2 = txtAddressLine2.Text;
-             string town = txtTown.Text;
-             string county = txtCounty.Text;
-             string email = txtEmail.Text;
-             string phone = txtPhone.Text;*/
-
-            txtSearch.Focus();
+           txtSearch.Focus();
 
             
         }
@@ -57,11 +50,14 @@ namespace WindowsFormsApp1
 
             grdData.DataSource = Supplier.getUpdateSupplier(ds,txtSearch.Text).Tables["stk"];
 
+            
+
 
         }
 
         private void grdData_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            
 
             txtSupplierId.Text = grdData.SelectedRows[0].Cells[0].Value.ToString();
             txtSupplierName.Text = grdData.SelectedRows[0].Cells[1].Value.ToString();
@@ -76,41 +72,111 @@ namespace WindowsFormsApp1
 
         private void btnUpdateSupplier_Click(object sender, EventArgs e)
         {
-            string supplierId = txtSupplierId.Text;
-            string name = txtSupplierName.Text;
-            string add1 = txtAddressLine1.Text;
-            string add2 = txtAddressLine2.Text;
-            string town = txtTown.Text;
-            string county = txtCounty.Text;
-            string email = txtEmail.Text;
-            string phone = txtPhone.Text;
-            string status = txtStatus.Text;
 
-            MessageBox.Show("" + supplierId + name + add1 + add2 + town + county + email + phone + status);
+            Boolean validName = Validation.ValidateName(txtSupplierName.Text);
 
-            //connect to the db
-            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+            if (validName == false)
+            {
+                txtSupplierName.Clear();
+                txtSupplierName.Focus();
+                MessageBox.Show("Incorrect Name format");
+            }
 
-            //define Sql Command
-            String strSQL = "UPDATE Supplier SET SupplierName = name,AddressLine1 = add1,AddressLine2 = add2, Town = town, County = county, Email = email, Phone = phone, Status = status where supplierId = SupplierId";
+            Boolean validAdd1 = Validation.ValidateAdd(txtAddressLine1.Text);
 
-            //Execute Query
-            OracleCommand cmd = new OracleCommand(strSQL, connect);
+            if (validAdd1 == false)
+            {
+                txtAddressLine1.Clear();
+                txtAddressLine1.Focus();
+                MessageBox.Show("Incorrect Address Line 1");
+            }
 
-            connect.Open();
+            Boolean validAdd2 = Validation.ValidateAdd(txtAddressLine2.Text);
 
-            cmd.ExecuteNonQuery();
+            if (validAdd2 == false)
+            {
+                txtAddressLine2.Clear();
+                txtAddressLine2.Focus();
+                MessageBox.Show("Incorrect Address Line 2");
+            }
 
-            connect.Close();
+            Boolean validTown = Validation.ValidateTown(txtTown.Text);
+
+            if (validTown == false)
+            {
+                txtTown.Focus();
+                MessageBox.Show("Incorrect Town");
+            }
+
+            Boolean validCounty = Validation.ValidateCounty(txtCounty.Text);
+
+            if (validCounty == false)
+            {
+                txtCounty.Focus();
+                MessageBox.Show("Incorrect County");
+            }
+
+            Boolean validPhone = Validation.ValidatePhone(txtPhone.Text);
+
+            if (validPhone == false)
+            {
+                txtPhone.Clear();
+                txtPhone.Focus();
+                MessageBox.Show("Incorrect Phone format");
+            }
+
+            Boolean validEmail = Validation.ValidateEmail(txtEmail.Text);
+
+            if (validEmail == false)
+            {
+                txtEmail.Focus();
+                MessageBox.Show("Incorrect Email address");
+            }
+
+            if (validName && validAdd1 && validAdd2 && validTown && validCounty && validPhone && validEmail)
+            {
+
+
+                int supplierId = Convert.ToInt16(txtSupplierId.Text);
+                string name = txtSupplierName.Text;
+                string add1 = txtAddressLine1.Text;
+                string add2 = txtAddressLine2.Text;
+                string town = txtTown.Text;
+                string county = txtCounty.Text;
+                string email = txtEmail.Text;
+                string phone = txtPhone.Text;
+                string status = txtStatus.Text;
 
 
 
+                MessageBox.Show("" + supplierId + name + add1 + add2 + town + county + email + phone + status);
 
+                //connect to the db
+                OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
-            //Close Db
-            connect.Close();
+                //define Sql Command
+                String strSQL = "UPDATE Supplier SET SupplierName = '" + name + "',AddressLine1 = '" + add1 + "',AddressLine2 = '" + add2 + "', Town = '" + town + "', County = +'" + county + "', Email = '" + email + "', Phone = '" + phone + "', Status = '" + status + "' where SupplierId = " + supplierId;
 
+                //Execute Query
+                OracleCommand cmd = new OracleCommand(strSQL, connect);
 
+                connect.Open();
+
+                cmd.ExecuteNonQuery();
+
+                connect.Close();
+
+                //Close Db
+                connect.Close();
+            }
+
+        }
+
+  
+
+        private void frmUpdateSupplier_Activated(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
         }
     }
 }

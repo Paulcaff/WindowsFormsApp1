@@ -38,20 +38,87 @@ namespace WindowsFormsApp1
 
         private void btnAddSupplier_Click(object sender, EventArgs e)
         {
-            int supplierId = Convert.ToInt16(Supplier.getNextSupplierId());
-            string name = txtSupplierName.Text;
-            string add1 = txtAddressLine1.Text;
-            string add2 = txtAddressLine2.Text;
-            string town = txtTown.Text;
-            string county = txtCounty.Text;
-            string email = txtEmail.Text;
-            string phone = txtPhone.Text;
-            string status = "A";
+            Boolean validName = Validation.ValidateName(txtSupplierName.Text);
 
-            MessageBox.Show(""+supplierId+name+add1+add2+town+county+email+phone+status);
+            if (validName == false)
+            {
+                txtSupplierName.Clear();
+                txtSupplierName.Focus();
+                MessageBox.Show("Incorrect Name format");
+            }
 
-            Supplier newSupplier = new Supplier(supplierId, name, add1, add2, town, county, email, phone,status);
-            newSupplier.AddSupplier();
+            Boolean validAdd1 = Validation.ValidateAdd(txtAddressLine1.Text);
+
+            if (validAdd1 == false)
+            {
+                txtAddressLine1.Clear();
+                txtAddressLine1.Focus();
+                MessageBox.Show("Incorrect Address Line 1");
+            }
+
+            Boolean validAdd2 = Validation.ValidateAdd(txtAddressLine2.Text);
+
+            if (validAdd2 == false)
+            {
+                txtAddressLine2.Clear();
+                txtAddressLine2.Focus();
+                MessageBox.Show("Incorrect Address Line 2");
+            }
+
+            Boolean validTown= Validation.ValidateTown(txtTown.Text);
+
+            if (validTown == false)
+            {
+                txtTown.Focus();
+                MessageBox.Show("Incorrect Town");
+            }
+
+            Boolean validCounty = Validation.ValidateCounty(txtCounty.Text);
+
+            if (validCounty == false)
+            {
+                txtCounty.Focus();
+                MessageBox.Show("Incorrect County");
+            }
+
+            Boolean validPhone = Validation.ValidatePhone(txtPhone.Text);
+
+            if (validPhone == false)
+            {
+                txtPhone.Clear();
+                txtPhone.Focus();
+                MessageBox.Show("Incorrect Phone format");
+            }
+
+            Boolean validEmail = Validation.ValidateEmail(txtEmail.Text);
+
+            if (validEmail == false)
+            {
+                txtEmail.Focus();
+                MessageBox.Show("Incorrect Email address");
+            }
+
+            if (validName && validAdd1 && validAdd2 && validTown && validCounty && validPhone && validEmail)
+            {
+
+                int supplierId = Convert.ToInt16(Supplier.getNextSupplierId());
+                string name = txtSupplierName.Text;
+                string add1 = txtAddressLine1.Text;
+                string add2 = txtAddressLine2.Text;
+                string town = txtTown.Text;
+                string county = txtCounty.Text;
+                string email = txtEmail.Text;
+                string phone = txtPhone.Text;
+                string status = "A";
+
+                Supplier newSupplier = new Supplier(supplierId, name, add1, add2, town, county, email, phone, status);
+                newSupplier.AddSupplier();
+
+            }
+
+            
+
+           
         }
 
         private void frmAddSupplier_Load(object sender, EventArgs e)
@@ -59,89 +126,6 @@ namespace WindowsFormsApp1
             txtSupplierId.Text =Supplier.getNextSupplierId().ToString("00000");
             txtSupplierName.Focus();
         }
-
-     
-
-        private void txtSupplierName_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidateName(txtSupplierName.Text);
-
-            if (valid == false)
-            {
-                txtSupplierName.Clear();
-                txtSupplierName.Focus();
-                MessageBox.Show("Incorrect Name format");
-            }
-        }
-
-        private void txtAddressLine1_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidateAdd(txtAddressLine1.Text);
-
-            if(valid == false)
-            {
-                txtAddressLine1.Clear();
-                txtAddressLine1.Focus();
-                MessageBox.Show("Incorrect Address Line 1");
-            }
-        }
-
-        private void txtAddressLine2_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidateAdd(txtAddressLine2.Text);
-
-            if (valid == false)
-            {
-                txtAddressLine2.Clear();
-                txtAddressLine2.Focus();
-                MessageBox.Show("Incorrect Address Line 2");
-            }
-        }
-
-        private void txtTown_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidateTown(txtTown.Text);
-
-            if (valid == false)
-            {
-                txtTown.Focus();
-                MessageBox.Show("Incorrect Town");
-            }
-        }
-
-        private void txtCounty_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidateCounty(txtCounty.Text);
-
-            if (valid == false)
-            {
-                txtCounty.Focus();
-                MessageBox.Show("Incorrect County");
-            }
-        }
-
-        private void txtPhone_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidatePhone(txtPhone.Text);
-
-            if (valid == false)
-            {
-                txtPhone.Clear();
-                txtPhone.Focus();
-                MessageBox.Show("Incorrect Phone format");
-            }
-        }
-
-        private void txtEmail_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidateEmail(txtEmail.Text);
-
-            if(valid == false)
-            {
-                txtEmail.Focus();
-                MessageBox.Show("Incorrect Email address");
-            }
-
-        }
+ 
     }
 }

@@ -151,6 +151,7 @@
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.Size = new System.Drawing.Size(158, 20);
             this.txtSupplierName.TabIndex = 8;
+   
             // 
             // txtAddressLine1
             // 
@@ -158,6 +159,7 @@
             this.txtAddressLine1.Name = "txtAddressLine1";
             this.txtAddressLine1.Size = new System.Drawing.Size(158, 20);
             this.txtAddressLine1.TabIndex = 9;
+           
             // 
             // txtAddressLine2
             // 
@@ -165,6 +167,7 @@
             this.txtAddressLine2.Name = "txtAddressLine2";
             this.txtAddressLine2.Size = new System.Drawing.Size(156, 20);
             this.txtAddressLine2.TabIndex = 10;
+           
             // 
             // txtTown
             // 
@@ -294,6 +297,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmUpdateSupplier";
             this.Text = "Update Supplier";
+            this.Activated += new System.EventHandler(this.frmUpdateSupplier_Activated);
             this.Load += new System.EventHandler(this.frmUpdateSupplier_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
