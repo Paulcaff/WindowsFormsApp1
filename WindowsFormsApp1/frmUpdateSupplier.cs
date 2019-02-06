@@ -168,6 +168,18 @@ namespace WindowsFormsApp1
 
                 //Close Db
                 connect.Close();
+
+                txtSearch.Clear();
+                txtSupplierId.Clear();
+                txtSupplierName.Clear();
+                txtAddressLine1.Clear();
+                txtAddressLine2.Clear();
+                txtTown.Clear();
+                txtCounty.Clear();
+                txtEmail.Clear();
+                txtPhone.Clear();
+                txtStatus.Clear();
+                txtSearch.Focus();
             }
 
         }
