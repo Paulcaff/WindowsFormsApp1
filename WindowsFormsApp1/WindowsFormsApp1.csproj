@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C70A2EE2-CA4C-43CE-BE27-104F156093DF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsApp1</RootNamespace>
+    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL" />
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DBConnect.cs" />
+    <Compile Include="frmAddSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddSupplier.Designer.cs">
+      <DependentUpon>frmAddSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCancelOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCancelOrder.Designer.cs">
+      <DependentUpon>frmCancelOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCloseSupplierAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCloseSupplierAccount.Designer.cs">
+      <DependentUpon>frmCloseSupplierAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPaySupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaySupplier.Designer.cs">
+      <DependentUpon>frmPaySupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPlaceOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPlaceOrder.Designer.cs">
+      <DependentUpon>frmPlaceOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReceiveOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReceiveOrder.Designer.cs">
+      <DependentUpon>frmReceiveOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRemoveStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRemoveStock.Designer.cs">
+      <DependentUpon>frmRemoveStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReturnStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReturnStock.Designer.cs">
+      <DependentUpon>frmReturnStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowBestSellers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShowBestSellers.Designer.cs">
+      <DependentUpon>frmShowBestSellers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowWorstSellers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShowWorstSellers.Designer.cs">
+      <DependentUpon>frmShowWorstSellers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdateStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateStock.Designer.cs">
+      <DependentUpon>frmUpdateStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMainMenu.Designer.cs">
+      <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddStock.Designer.cs">
+      <DependentUpon>frmAddStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdateSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateSupplier.Designer.cs">
+      <DependentUpon>frmUpdateSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderItems.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stock.cs" />
+    <Compile Include="Supplier.cs" />
+    <Compile Include="Validation.cs" />
+    <EmbeddedResource Include="frmAddSupplier.resx">
+      <DependentUpon>frmAddSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCancelOrder.resx">
+      <DependentUpon>frmCancelOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCloseSupplierAccount.resx">
+      <DependentUpon>frmCloseSupplierAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMainMenu.resx">
+      <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddStock.resx">
+      <DependentUpon>frmAddStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPaySupplier.resx">
+      <DependentUpon>frmPaySupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlaceOrder.resx">
+      <DependentUpon>frmPlaceOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReceiveOrder.resx">
+      <DependentUpon>frmReceiveOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRemoveStock.resx">
+      <DependentUpon>frmRemoveStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReturnStock.resx">
+      <DependentUpon>frmReturnStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowBestSellers.resx">
+      <DependentUpon>frmShowBestSellers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowWorstSellers.resx">
+      <DependentUpon>frmShowWorstSellers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateStock.resx">
+      <DependentUpon>frmUpdateStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateSupplier.resx">
+      <DependentUpon>frmUpdateSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
