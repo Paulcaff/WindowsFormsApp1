@@ -191,6 +191,35 @@ namespace WindowsFormsApp1
         }
 
 
+        public static DataSet getUpdateSupplier(DataSet ds, string search)
+        {
+
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+            String strSQL = "Select * From Stock Where SupplierName LIKE '%" + search + "%'";
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            //create oracle adapter
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            //Fill The Dataset with query result;
+            da.Fill(ds, "stk");
+
+            //Close Db
+            connect.Close();
+
+
+
+
+            //return Query Result
+            return ds;
+        }
+
+
 
 
     }
