@@ -40,6 +40,7 @@ namespace WindowsFormsApp1
         private void frmUpdateSupplier_Load(object sender, EventArgs e)
         {
            txtSearch.Focus();
+            grpSupplier.Hide();
 
             
         }
@@ -68,6 +69,8 @@ namespace WindowsFormsApp1
             txtEmail.Text = grdData.SelectedRows[0].Cells[6].Value.ToString();
             txtPhone.Text = grdData.SelectedRows[0].Cells[7].Value.ToString();
             txtStatus.Text = grdData.SelectedRows[0].Cells[8].Value.ToString();
+
+            grpSupplier.Show();
         }
 
         private void btnUpdateSupplier_Click(object sender, EventArgs e)

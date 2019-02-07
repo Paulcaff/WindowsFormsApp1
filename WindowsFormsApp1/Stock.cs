@@ -191,14 +191,14 @@ namespace WindowsFormsApp1
         }
 
 
-        public static DataSet getUpdateSupplier(DataSet ds, string search)
+        public static DataSet getUpdateStock(DataSet ds, string search)
         {
 
             //connect to the db
             OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
             //define Sql Command
-            String strSQL = "Select * From Stock Where SupplierName LIKE '%" + search + "%'";
+            String strSQL = "Select * From Stock Where StockName LIKE '%" + search + "%'";
 
             //Execute Query
             OracleCommand cmd = new OracleCommand(strSQL, connect);

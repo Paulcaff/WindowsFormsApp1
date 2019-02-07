@@ -36,17 +36,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtstockName = new System.Windows.Forms.TextBox();
+            this.txtStockName = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.btnUpdateStock = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grdData = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtStockId = new System.Windows.Forms.TextBox();
+            this.grpStock = new System.Windows.Forms.GroupBox();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.Status = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
+            this.grpStock.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -56,7 +62,7 @@
             this.frmExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(479, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(486, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -77,7 +83,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(95, 181);
+            this.label1.Location = new System.Drawing.Point(69, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 1;
@@ -86,7 +92,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(95, 224);
+            this.label2.Location = new System.Drawing.Point(69, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 2;
@@ -95,7 +101,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(95, 271);
+            this.label3.Location = new System.Drawing.Point(69, 132);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 3;
@@ -104,7 +110,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(95, 311);
+            this.label4.Location = new System.Drawing.Point(69, 163);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 4;
@@ -113,69 +119,73 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(95, 351);
+            this.label5.Location = new System.Drawing.Point(69, 192);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 5;
-            this.label5.Text = "Supplier";
+            this.label5.Text = "Supplier Id";
             // 
-            // txtstockName
+            // txtStockName
             // 
-            this.txtstockName.Location = new System.Drawing.Point(220, 181);
-            this.txtstockName.Name = "txtstockName";
-            this.txtstockName.Size = new System.Drawing.Size(184, 20);
-            this.txtstockName.TabIndex = 6;
-            this.txtstockName.TextChanged += new System.EventHandler(this.txtstockName_TextChanged);
+            this.txtStockName.Location = new System.Drawing.Point(177, 60);
+            this.txtStockName.Name = "txtStockName";
+            this.txtStockName.Size = new System.Drawing.Size(182, 20);
+            this.txtStockName.TabIndex = 6;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(220, 221);
+            this.txtDescription.Location = new System.Drawing.Point(176, 95);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(183, 20);
             this.txtDescription.TabIndex = 7;
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(220, 268);
+            this.txtAmount.Location = new System.Drawing.Point(178, 125);
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(183, 20);
+            this.txtAmount.Size = new System.Drawing.Size(180, 20);
             this.txtAmount.TabIndex = 8;
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(220, 311);
+            this.txtPrice.Location = new System.Drawing.Point(178, 156);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(184, 20);
+            this.txtPrice.Size = new System.Drawing.Size(181, 20);
             this.txtPrice.TabIndex = 9;
             // 
             // txtSupplier
             // 
-            this.txtSupplier.Location = new System.Drawing.Point(223, 351);
+            this.txtSupplier.Location = new System.Drawing.Point(178, 189);
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(181, 20);
             this.txtSupplier.TabIndex = 10;
             // 
             // btnUpdateStock
             // 
-            this.btnUpdateStock.Location = new System.Drawing.Point(146, 399);
+            this.btnUpdateStock.Location = new System.Drawing.Point(109, 262);
             this.btnUpdateStock.Name = "btnUpdateStock";
             this.btnUpdateStock.Size = new System.Drawing.Size(181, 39);
             this.btnUpdateStock.TabIndex = 11;
             this.btnUpdateStock.Text = "Update Stock";
             this.btnUpdateStock.UseVisualStyleBackColor = true;
+            this.btnUpdateStock.Click += new System.EventHandler(this.btnUpdateStock_Click);
             // 
-            // dataGridView1
+            // grdData
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(52, 79);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(399, 80);
-            this.dataGridView1.TabIndex = 12;
+            this.grdData.AllowUserToAddRows = false;
+            this.grdData.AllowUserToDeleteRows = false;
+            this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdData.Location = new System.Drawing.Point(41, 80);
+            this.grdData.Name = "grdData";
+            this.grdData.ReadOnly = true;
+            this.grdData.Size = new System.Drawing.Size(399, 80);
+            this.grdData.TabIndex = 12;
+            this.grdData.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdData_RowHeaderMouseDoubleClick);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(38, 47);
+            this.label6.Location = new System.Drawing.Point(81, 50);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 13);
             this.label6.TabIndex = 13;
@@ -183,30 +193,78 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(146, 44);
+            this.txtSearch.Location = new System.Drawing.Point(212, 47);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(190, 20);
             this.txtSearch.TabIndex = 14;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(69, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Stock Id";
+            // 
+            // txtStockId
+            // 
+            this.txtStockId.Enabled = false;
+            this.txtStockId.Location = new System.Drawing.Point(177, 25);
+            this.txtStockId.Name = "txtStockId";
+            this.txtStockId.Size = new System.Drawing.Size(181, 20);
+            this.txtStockId.TabIndex = 16;
+            // 
+            // grpStock
+            // 
+            this.grpStock.Controls.Add(this.Status);
+            this.grpStock.Controls.Add(this.txtStatus);
+            this.grpStock.Controls.Add(this.txtStockId);
+            this.grpStock.Controls.Add(this.label7);
+            this.grpStock.Controls.Add(this.txtSupplier);
+            this.grpStock.Controls.Add(this.txtPrice);
+            this.grpStock.Controls.Add(this.btnUpdateStock);
+            this.grpStock.Controls.Add(this.txtAmount);
+            this.grpStock.Controls.Add(this.txtDescription);
+            this.grpStock.Controls.Add(this.txtStockName);
+            this.grpStock.Controls.Add(this.label5);
+            this.grpStock.Controls.Add(this.label4);
+            this.grpStock.Controls.Add(this.label3);
+            this.grpStock.Controls.Add(this.label2);
+            this.grpStock.Controls.Add(this.label1);
+            this.grpStock.Location = new System.Drawing.Point(41, 166);
+            this.grpStock.Name = "grpStock";
+            this.grpStock.Size = new System.Drawing.Size(399, 307);
+            this.grpStock.TabIndex = 17;
+            this.grpStock.TabStop = false;
+            this.grpStock.Text = "Stock Details";
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Location = new System.Drawing.Point(177, 229);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(182, 20);
+            this.txtStatus.TabIndex = 17;
+            // 
+            // Status
+            // 
+            this.Status.AutoSize = true;
+            this.Status.Location = new System.Drawing.Point(69, 229);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(37, 13);
+            this.Status.TabIndex = 18;
+            this.Status.Text = "Status";
             // 
             // frmUpdateStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 450);
+            this.ClientSize = new System.Drawing.Size(486, 503);
+            this.Controls.Add(this.grpStock);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnUpdateStock);
-            this.Controls.Add(this.txtSupplier);
-            this.Controls.Add(this.txtPrice);
-            this.Controls.Add(this.txtAmount);
-            this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.txtstockName);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.grdData);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmUpdateStock";
@@ -214,7 +272,9 @@
             this.Load += new System.EventHandler(this.frmUpdateStock_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();
+            this.grpStock.ResumeLayout(false);
+            this.grpStock.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,14 +290,19 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtstockName;
+        private System.Windows.Forms.TextBox txtStockName;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Button btnUpdateStock;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView grdData;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtStockId;
+        private System.Windows.Forms.GroupBox grpStock;
+        private System.Windows.Forms.Label Status;
+        private System.Windows.Forms.TextBox txtStatus;
     }
 }
