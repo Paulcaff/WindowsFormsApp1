@@ -32,10 +32,11 @@
             this.mnuBack = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.RemoveStock = new System.Windows.Forms.ListBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnRemoveStock = new System.Windows.Forms.Button();
+            this.grdData = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -72,26 +73,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Stock Name / Stock ID";
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(195, 71);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(161, 20);
-            this.textBox1.TabIndex = 2;
-            // 
-            // RemoveStock
-            // 
-            this.RemoveStock.FormattingEnabled = true;
-            this.RemoveStock.Items.AddRange(new object[] {
-            "1 \tGuinness\t  \tStout\t      12\t4.90 \tDiageo ",
-            "2 \tHeineken\t  \tLager\t      16\t5.10 \tHeineken",
-            "3 \tCarlsberg\t  \tLager\t      4\t5.10 \tDiageo"});
-            this.RemoveStock.Location = new System.Drawing.Point(44, 126);
-            this.RemoveStock.Name = "RemoveStock";
-            this.RemoveStock.ScrollAlwaysVisible = true;
-            this.RemoveStock.Size = new System.Drawing.Size(364, 95);
-            this.RemoveStock.TabIndex = 3;
-            this.RemoveStock.SelectedIndexChanged += new System.EventHandler(this.RemoveStock_SelectedIndexChanged);
+            this.txtSearch.Location = new System.Drawing.Point(195, 71);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(161, 20);
+            this.txtSearch.TabIndex = 2;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnRemoveStock
             // 
@@ -102,14 +90,22 @@
             this.btnRemoveStock.Text = "Remove Stock";
             this.btnRemoveStock.UseVisualStyleBackColor = true;
             // 
+            // grdData
+            // 
+            this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdData.Location = new System.Drawing.Point(43, 116);
+            this.grdData.Name = "grdData";
+            this.grdData.Size = new System.Drawing.Size(400, 150);
+            this.grdData.TabIndex = 5;
+            // 
             // frmRemoveStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 450);
+            this.Controls.Add(this.grdData);
             this.Controls.Add(this.btnRemoveStock);
-            this.Controls.Add(this.RemoveStock);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -118,6 +114,7 @@
             this.Load += new System.EventHandler(this.frmRemoveStock_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,8 +126,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBack;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox RemoveStock;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnRemoveStock;
+        private System.Windows.Forms.DataGridView grdData;
     }
 }

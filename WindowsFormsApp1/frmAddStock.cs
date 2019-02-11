@@ -83,6 +83,13 @@ namespace WindowsFormsApp1
             Stock newStock = new Stock(StockId, name, description, amount, quantity, supplier, status);
             newStock.AddStock();
 
+                txtStockId.Clear();
+                txtStockName.Clear();
+                txtDescription.Clear();
+                txtSupplier.Clear();
+                
+               
+
             }
         }
 

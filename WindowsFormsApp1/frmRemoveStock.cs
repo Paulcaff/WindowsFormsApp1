@@ -42,7 +42,16 @@ namespace WindowsFormsApp1
 
         private void frmRemoveStock_Load(object sender, EventArgs e)
         {
-           
+            DataSet ds = new DataSet();
+
+            grdData.DataSource = Stock.getUpdateStock(ds, txtSearch.Text).Tables["stk"];
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+
+            grdData.DataSource = Stock.getUpdateStock(ds, txtSearch.Text).Tables["stk"];
         }
     }
 }
