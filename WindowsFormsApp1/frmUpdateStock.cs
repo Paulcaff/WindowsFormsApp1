@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
             Application.Exit();
         }
 
-     
+
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
@@ -64,41 +64,87 @@ namespace WindowsFormsApp1
 
         private void btnUpdateStock_Click(object sender, EventArgs e)
         {
-            int StockId = Convert.ToInt16(Stock.getNextStockId());
-            string name = txtStockName.Text;
-            string description = txtDescription.Text;
-            int amount = Convert.ToInt16(txtAmount.Text);
-            float price = float.Parse(txtPrice.Text);
-            int supplier = Convert.ToInt16(txtSupplier.Text);
-            string status = txtStatus.Text;
+            Boolean valid = Validation.ValidateAdd(txtStockName.Text);
+
+            if (valid == false)
+            {
+                txtStockName.Focus();
+                MessageBox.Show("Incorrect Name");
+            }
+
+            Boolean validDesc = Validation.ValidateAdd(txtDescription.Text);
+
+            if (validDesc == false)
+            {
+                txtDescription.Focus();
+                MessageBox.Show("Invalid characters used during description");
+            }
+
+            Boolean validSupplier = Validation.ValidateId(txtSupplier.Text);
+
+            if (validSupplier == false)
+            {
+                txtSupplier.Focus();
+            }
+
+            Boolean validStatus = Validation.ValidateStatus(txtStatus.Text);
+
+            if (validStatus == false)
+            {
+                txtStatus.Focus();
+                MessageBox.Show("Status has to be 1 character long");
+            }
+
+            if (valid && validDesc && validSupplier && validStatus)
+            {
 
 
-            //connect to the db
-            OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
-            //define Sql Command
-            String strSQL = "UPDATE Stock SET StockName = '" + name + "',description = '" + description + "',Amount = " + amount + ", Price = " + price + ", SupplierId = " + supplier + ", Status = '" + status + "' where StockId = " + StockId;
+                int StockId = Convert.ToInt16(txtStockId.Text);
+                string name = txtStockName.Text;
+                string description = txtDescription.Text;
+                int amount = Convert.ToInt16(txtAmount.Text);
+                float price = float.Parse(txtPrice.Text);
+                int supplier = Convert.ToInt16(txtSupplier.Text);
+                string status = txtStatus.Text;
 
-            //Execute Query
-            OracleCommand cmd = new OracleCommand(strSQL, connect);
+                MessageBox.Show(""+StockId+name+description+amount+price+supplier+status);
 
-            connect.Open();
 
-            cmd.ExecuteNonQuery();
+                //connect to the db
+                OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
-            connect.Close();
+                //define Sql Command
+                String strSQL = "UPDATE Stock SET StockName = '" + name + "',Description = '" + description + "',Amount = " + amount + ", Price = " + price + ", SupplierId = " + supplier + ", Status = '" + status + "' where StockId = " + StockId;
+                MessageBox.Show("Here");
 
-            //Close Db
-            connect.Close();
+                //Execute Query
+                OracleCommand cmd = new OracleCommand(strSQL, connect);
 
-            txtSearch.Clear();
-            txtStockId.Clear();
-            txtStockName.Clear();
-            txtDescription.Clear();
-            txtAmount.Clear();
-            txtPrice.Clear();
-            txtSupplier.Clear();
-            txtStatus.Clear();
+              
+
+                connect.Open();
+                
+
+                cmd.ExecuteNonQuery();
+
+           
+
+
+                //Close Db
+                connect.Close();
+                
+
+                txtSearch.Clear();
+                txtStockId.Clear();
+                txtStockName.Clear();
+                txtDescription.Clear();
+                txtAmount.Clear();
+                txtPrice.Clear();
+                txtSupplier.Clear();
+                txtStatus.Clear();
+                
+            }
         }
     }
 }

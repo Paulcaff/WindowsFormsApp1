@@ -167,8 +167,7 @@ namespace WindowsFormsApp1
 
                 cmd.ExecuteNonQuery();
 
-                connect.Close();
-
+             
                 //Close Db
                 connect.Close();
 

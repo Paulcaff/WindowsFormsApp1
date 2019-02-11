@@ -145,6 +145,34 @@ namespace WindowsFormsApp1
             return valid;
         }
 
+        public static Boolean ValidateStatus(string status)
+        {
+            Boolean valid = false;
+            var regexEmail = new Regex(@"^[a-zA-Z]");
+            //stackoverflow.com/questions/32985337/how-to-read-regex-in-my-email-validation-
+            //This is the url where i got this Regex expression
+
+
+            if (!status.Equals(""))
+            {
+                if (status.Length == 1)
+                {
+                    if (regexEmail.IsMatch(status))
+                    {
+                        valid = true;
+                    }
+
+                }
+            }
+
+            else
+            {
+                valid = false;
+            }
+
+            return valid;
+        }
+
 
         public static Boolean ValidateId(string id)
         {
@@ -164,12 +192,12 @@ namespace WindowsFormsApp1
 
             if (dr.Read())
             {
-                MessageBox.Show("this exists");
+                MessageBox.Show("this Supplier exists in the Supplier Database");
                 valid = true;
             }
             else
             {
-                MessageBox.Show("SupplierId does not exists in database");
+                MessageBox.Show("SupplierId does not exists in the Supplier database");
                 //match
                 
             }

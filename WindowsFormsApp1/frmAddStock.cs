@@ -45,17 +45,45 @@ namespace WindowsFormsApp1
 
         private void btnAddStock_Click(object sender, EventArgs e)
         {
+            Boolean valid = Validation.ValidateAdd(txtStockName.Text);
+
+            if (valid == false)
+            {
+                txtStockName.Focus();
+                MessageBox.Show("Incorrect Name");
+            }
+
+            Boolean validDesc = Validation.ValidateAdd(txtDescription.Text);
+
+            if (validDesc == false)
+            {
+                txtDescription.Focus();
+                MessageBox.Show("Invalid characters used during description");
+            }
+
+            Boolean validSupplier = Validation.ValidateId(txtSupplier.Text);
+
+            if (validSupplier == false)
+            {
+                txtSupplier.Focus();
+            }
+
+            if (valid && validDesc && validSupplier)
+            { 
+
             int StockId = Convert.ToInt16(Stock.getNextStockId());
             string name = txtStockName.Text;
             string description = txtDescription.Text;
             int amount = Convert.ToInt16(txtAmount.Text);
-            float quantity =float.Parse(txtPrice.Text);
+            float quantity = float.Parse(txtPrice.Text);
             int supplier = Convert.ToInt16(txtSupplier.Text);
             string status = "A";
             //git working?
 
-            Stock newStock = new Stock(StockId, name,description, amount, quantity, supplier, status);
+            Stock newStock = new Stock(StockId, name, description, amount, quantity, supplier, status);
             newStock.AddStock();
+
+            }
         }
 
         private void frmAddStock_Load(object sender, EventArgs e)
@@ -64,36 +92,10 @@ namespace WindowsFormsApp1
             txtStockName.Focus();
         }
 
-        private void txtStockName_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidateAdd(txtStockName.Text);
+       
 
-            if (valid == false)
-            {
-                txtStockName.Focus();
-                MessageBox.Show("Incorrect Name");
-            }
-        }
+      
 
-        private void txtDescription_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidateAdd(txtDescription.Text);
-
-            if (valid == false)
-            {
-                txtDescription.Focus();
-                MessageBox.Show("Invalid characters used during description");
-            }
-        }
-
-        private void txtSupplier_Validating(object sender, CancelEventArgs e)
-        {
-            Boolean valid = Validation.ValidateId(txtSupplier.Text);
-
-            if(valid == false)
-            {
-                txtSupplier.Focus();
-            }
-        }
+      
     }
 }

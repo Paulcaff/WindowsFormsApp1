@@ -125,7 +125,7 @@
             this.txtStockName.Name = "txtStockName";
             this.txtStockName.Size = new System.Drawing.Size(174, 20);
             this.txtStockName.TabIndex = 8;
-            this.txtStockName.Validating += new System.ComponentModel.CancelEventHandler(this.txtStockName_Validating);
+           
             // 
             // txtDescription
             // 
@@ -133,7 +133,7 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(174, 20);
             this.txtDescription.TabIndex = 9;
-            this.txtDescription.Validating += new System.ComponentModel.CancelEventHandler(this.txtDescription_Validating);
+            
             // 
             // txtSupplier
             // 
@@ -141,7 +141,7 @@
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(170, 20);
             this.txtSupplier.TabIndex = 12;
-            this.txtSupplier.Validating += new System.ComponentModel.CancelEventHandler(this.txtSupplier_Validating);
+           
             // 
             // btnAddStock
             // 
