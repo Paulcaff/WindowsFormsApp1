@@ -102,7 +102,7 @@ namespace WindowsFormsApp1
         public static Boolean ValidatePhone(string phone)
         {
             Boolean valid = false;
-            var regexAdd = new Regex("^[0-9- ]*$");
+            var regexAdd = new Regex("^[0-9]*$");
 
             if (!phone.Equals(""))
             {

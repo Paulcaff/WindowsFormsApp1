@@ -49,11 +49,9 @@
             this.grdData = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtSupplierId = new System.Windows.Forms.TextBox();
             this.grpSupplier = new System.Windows.Forms.GroupBox();
-            this.txtStatus = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.grpSupplier.SuspendLayout();
@@ -235,15 +233,6 @@
             this.txtSearch.TabIndex = 18;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(129, 313);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Status";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -269,9 +258,7 @@
             this.grpSupplier.Controls.Add(this.label10);
             this.grpSupplier.Controls.Add(this.label2);
             this.grpSupplier.Controls.Add(this.btnUpdateSupplier);
-            this.grpSupplier.Controls.Add(this.txtStatus);
             this.grpSupplier.Controls.Add(this.label3);
-            this.grpSupplier.Controls.Add(this.label9);
             this.grpSupplier.Controls.Add(this.label5);
             this.grpSupplier.Controls.Add(this.label6);
             this.grpSupplier.Controls.Add(this.label7);
@@ -288,13 +275,6 @@
             this.grpSupplier.TabIndex = 23;
             this.grpSupplier.TabStop = false;
             this.grpSupplier.Text = "Supplier Details";
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Location = new System.Drawing.Point(250, 313);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(159, 20);
-            this.txtStatus.TabIndex = 20;
             // 
             // frmUpdateSupplier
             // 
@@ -344,10 +324,8 @@
         private System.Windows.Forms.DataGridView grdData;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtSupplierId;
         private System.Windows.Forms.GroupBox grpSupplier;
-        private System.Windows.Forms.TextBox txtStatus;
     }
 }

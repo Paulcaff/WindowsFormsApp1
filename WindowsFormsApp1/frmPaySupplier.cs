@@ -34,5 +34,20 @@ namespace WindowsFormsApp1
         {
             Application.Exit();
         }
+
+        private void grdData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+            txtSupplierName.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[1].Value.ToString();
+            txtBalance.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[9].Value.ToString();
+
+        }
+
+        private void txtSupplier_TextChanged(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+
+            grdData.DataSource = Supplier.getAvailableSupplier(ds, txtSearchSupplier.Text).Tables["stk"];
+        }
     }
 }

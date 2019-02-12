@@ -130,17 +130,17 @@ namespace WindowsFormsApp1
                 string county = txtCounty.Text;
                 string email = txtEmail.Text;
                 string phone = txtPhone.Text;
-                string status = txtStatus.Text;
+                
 
 
 
-                MessageBox.Show("" + supplierId + name + add1 + add2 + town + county + email + phone + status);
+                MessageBox.Show("" + supplierId + name + add1 + add2 + town + county + email + phone );
 
                 //connect to the db
                 OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
                 //define Sql Command
-                String strSQL = "UPDATE Supplier SET SupplierName = '" + name + "',AddressLine1 = '" + add1 + "',AddressLine2 = '" + add2 + "', Town = '" + town + "', County = +'" + county + "', Email = '" + email + "', Phone = '" + phone + "', Status = '" + status + "' where SupplierId = " + supplierId;
+                String strSQL = "UPDATE Supplier SET SupplierName = '" + name + "',AddressLine1 = '" + add1 + "',AddressLine2 = '" + add2 + "', Town = '" + town + "', County = +'" + county + "', Email = '" + email + "', Phone = '" + phone + "', Status = 'A' where SupplierId = " + supplierId;
 
                 //Execute Query
                 OracleCommand cmd = new OracleCommand(strSQL, connect);
@@ -162,8 +162,8 @@ namespace WindowsFormsApp1
                 txtCounty.Clear();
                 txtEmail.Clear();
                 txtPhone.Clear();
-                txtStatus.Clear();
-                txtSearch.Clear();
+                
+                
                 txtSearch.Focus();
             }
 
@@ -187,7 +187,7 @@ namespace WindowsFormsApp1
             txtCounty.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[5].Value.ToString();
             txtEmail.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[6].Value.ToString();
             txtPhone.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[7].Value.ToString();
-            txtStatus.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[8].Value.ToString();
+           
 
             grpSupplier.Show();
         }

@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
         private string Email;
         private string Phone;
         private string Status;
+        private float balance;
 
         //no argument constructor
         public Supplier()
@@ -33,10 +34,11 @@ namespace WindowsFormsApp1
             Email = "";
             Phone = "";
             Status = "";
+            balance = 0;
 
         }
 
-        public Supplier(int SupplierId,string SupplierName,string AddressLine1,string AddressLine2,string Town,string County,string Email,string Phone,string Status)
+        public Supplier(int SupplierId, string SupplierName, string AddressLine1, string AddressLine2, string Town, string County, string Email, string Phone, string Status, float balance)
         {
             this.SupplierId = SupplierId;
             this.SupplierName = SupplierName;
@@ -47,6 +49,7 @@ namespace WindowsFormsApp1
             this.Email = Email;
             this.Phone = Phone;
             this.Status = Status;
+            this.balance = balance;
 
         }
 
@@ -95,6 +98,11 @@ namespace WindowsFormsApp1
             this.Status = Status;
         }
 
+        public void setBalance(float balance)
+        {
+            this.balance = balance;
+        }
+
         public int getSupplierId()
         {
             return SupplierId;
@@ -137,6 +145,11 @@ namespace WindowsFormsApp1
             return Status;
         }
 
+        public float getBalance()
+        {
+            return balance;
+        }
+
 
 
 
@@ -175,7 +188,7 @@ namespace WindowsFormsApp1
             OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
             //define Sql Command
-            String strSQL = "INSERT INTO SUPPLIER VALUES("+this.SupplierId+",'" + this.SupplierName + "','" + this.AddressLine1 + "','" + this.AddressLine2 + "','" + this.Town + "','" + this.County+ "','" +this.Email + "','" + this.Phone + "','"+this.Status+"')";
+            String strSQL = "INSERT INTO SUPPLIER VALUES("+this.SupplierId+",'" + this.SupplierName + "','" + this.AddressLine1 + "','" + this.AddressLine2 + "','" + this.Town + "','" + this.County+ "','" +this.Email + "','" + this.Phone + "','"+this.Status+"',"+this.balance+")";
             int a = getSupplierId();
 
             //Execute Query

@@ -110,8 +110,9 @@ namespace WindowsFormsApp1
                 string email = txtEmail.Text;
                 string phone = txtPhone.Text;
                 string status = "A";
+                float balance = 0;
 
-                Supplier newSupplier = new Supplier(supplierId, name, add1, add2, town, county, email, phone, status);
+                Supplier newSupplier = new Supplier(supplierId, name, add1, add2, town, county, email, phone, status,balance);
                 newSupplier.AddSupplier();
 
             }
