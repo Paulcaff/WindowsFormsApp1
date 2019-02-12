@@ -131,13 +131,36 @@ namespace WindowsFormsApp1
             //Close Db
             connect.Close();
 
+            //return Query Result
+            return ds;
+        }
 
+
+        public static DataSet getAvailableStock(DataSet ds, string search)
+        {
+
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+            String strSQL = "Select * From Stock Where StockName LIKE '" + search + "%' AND Status = 'A'";
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            //create oracle adapter
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            //Fill The Dataset with query result;
+            da.Fill(ds, "stk");
+
+            //Close Db
+            connect.Close();
 
 
             //return Query Result
             return ds;
         }
-
         public void AddStock()
         {
 
@@ -147,7 +170,7 @@ namespace WindowsFormsApp1
             //define Sql Command
            // String strSQL1 = "INSERT INTO SUPPLIER VALUES(" + this.SupplierId + ",'" + this.SupplierName + "','" + this.AddressLine1 + "','" + this.AddressLine2 + "','" + this.Town + "','" + this.County + "','" + this.Email + "','" + this.Phone + "','" + this.Status + "')";
             
-            String strSQL = "INSERT INTO Stock VALUES(" + this.StockId + ",'" + this.StockName + "','" + this.Description + "','" + this.Amount + "','" + this.Price + "','" + this.SupplierId + "','" + this.Status + "')";
+            String strSQL = "INSERT INTO Stock VALUES(" + this.StockId + ",'" + this.StockName.ToUpper() + "','" + this.Description + "','" + this.Amount + "','" + this.Price + "','" + this.SupplierId + "','" + this.Status + "')";
             int a = getStockId();
 
             //Execute Query
@@ -191,33 +214,7 @@ namespace WindowsFormsApp1
         }
 
 
-        public static DataSet getUpdateStock(DataSet ds, string search)
-        {
-
-            //connect to the db
-            OracleConnection connect = new OracleConnection(DBConnect.oradb);
-
-            //define Sql Command
-            String strSQL = "Select * From Stock Where StockName LIKE '%" + search + "%'";
-
-            //Execute Query
-            OracleCommand cmd = new OracleCommand(strSQL, connect);
-
-            //create oracle adapter
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-
-            //Fill The Dataset with query result;
-            da.Fill(ds, "stk");
-
-            //Close Db
-            connect.Close();
-
-
-
-
-            //return Query Result
-            return ds;
-        }
+        
 
 
 

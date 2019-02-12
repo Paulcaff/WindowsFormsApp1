@@ -216,7 +216,7 @@
             this.grdData.ReadOnly = true;
             this.grdData.Size = new System.Drawing.Size(509, 150);
             this.grdData.TabIndex = 16;
-            this.grdData.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdData_RowHeaderMouseDoubleClick);
+            this.grdData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);
             // 
             // label8
             // 

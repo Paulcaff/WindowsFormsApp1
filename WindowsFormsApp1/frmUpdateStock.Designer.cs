@@ -48,8 +48,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtStockId = new System.Windows.Forms.TextBox();
             this.grpStock = new System.Windows.Forms.GroupBox();
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.Status = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.grpStock.SuspendLayout();
@@ -180,7 +178,7 @@
             this.grdData.ReadOnly = true;
             this.grdData.Size = new System.Drawing.Size(399, 80);
             this.grdData.TabIndex = 12;
-            this.grdData.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdData_RowHeaderMouseDoubleClick);
+            this.grdData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);
             // 
             // label6
             // 
@@ -218,8 +216,6 @@
             // 
             // grpStock
             // 
-            this.grpStock.Controls.Add(this.Status);
-            this.grpStock.Controls.Add(this.txtStatus);
             this.grpStock.Controls.Add(this.txtStockId);
             this.grpStock.Controls.Add(this.label7);
             this.grpStock.Controls.Add(this.txtSupplier);
@@ -239,22 +235,6 @@
             this.grpStock.TabIndex = 17;
             this.grpStock.TabStop = false;
             this.grpStock.Text = "Stock Details";
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Location = new System.Drawing.Point(177, 229);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(182, 20);
-            this.txtStatus.TabIndex = 17;
-            // 
-            // Status
-            // 
-            this.Status.AutoSize = true;
-            this.Status.Location = new System.Drawing.Point(69, 229);
-            this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(37, 13);
-            this.Status.TabIndex = 18;
-            this.Status.Text = "Status";
             // 
             // frmUpdateStock
             // 
@@ -302,7 +282,5 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtStockId;
         private System.Windows.Forms.GroupBox grpStock;
-        private System.Windows.Forms.Label Status;
-        private System.Windows.Forms.TextBox txtStatus;
     }
 }

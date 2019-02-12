@@ -35,6 +35,10 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnRemoveStock = new System.Windows.Forms.Button();
             this.grdData = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtStockId = new System.Windows.Forms.TextBox();
+            this.txtStockName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.SuspendLayout();
@@ -83,12 +87,13 @@
             // 
             // btnRemoveStock
             // 
-            this.btnRemoveStock.Location = new System.Drawing.Point(84, 306);
+            this.btnRemoveStock.Location = new System.Drawing.Point(96, 395);
             this.btnRemoveStock.Name = "btnRemoveStock";
             this.btnRemoveStock.Size = new System.Drawing.Size(246, 43);
             this.btnRemoveStock.TabIndex = 4;
             this.btnRemoveStock.Text = "Remove Stock";
             this.btnRemoveStock.UseVisualStyleBackColor = true;
+            this.btnRemoveStock.Click += new System.EventHandler(this.btnRemoveStock_Click);
             // 
             // grdData
             // 
@@ -97,12 +102,51 @@
             this.grdData.Name = "grdData";
             this.grdData.Size = new System.Drawing.Size(400, 150);
             this.grdData.TabIndex = 5;
+            this.grdData.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdData_RowHeaderMouseDoubleClick);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(93, 313);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Stock Id";
+            // 
+            // txtStockId
+            // 
+            this.txtStockId.Enabled = false;
+            this.txtStockId.Location = new System.Drawing.Point(195, 313);
+            this.txtStockId.Name = "txtStockId";
+            this.txtStockId.Size = new System.Drawing.Size(100, 20);
+            this.txtStockId.TabIndex = 7;
+            // 
+            // txtStockName
+            // 
+            this.txtStockName.Enabled = false;
+            this.txtStockName.Location = new System.Drawing.Point(195, 353);
+            this.txtStockName.Name = "txtStockName";
+            this.txtStockName.Size = new System.Drawing.Size(161, 20);
+            this.txtStockName.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(93, 360);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Stock Name";
             // 
             // frmRemoveStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtStockName);
+            this.Controls.Add(this.txtStockId);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.grdData);
             this.Controls.Add(this.btnRemoveStock);
             this.Controls.Add(this.txtSearch);
@@ -129,5 +173,9 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnRemoveStock;
         private System.Windows.Forms.DataGridView grdData;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtStockId;
+        private System.Windows.Forms.TextBox txtStockName;
+        private System.Windows.Forms.Label label4;
     }
 }

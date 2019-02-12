@@ -39,7 +39,11 @@ namespace WindowsFormsApp1
 
         private void frmUpdateSupplier_Load(object sender, EventArgs e)
         {
-           txtSearch.Focus();
+            DataSet ds = new DataSet();
+
+            grdData.DataSource = Supplier.getUpdateSupplier(ds, txtSearch.Text).Tables["stk"];
+
+            txtSearch.Focus();
             grpSupplier.Hide();
 
             
@@ -56,22 +60,6 @@ namespace WindowsFormsApp1
 
         }
 
-        private void grdData_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            
-
-            txtSupplierId.Text = grdData.SelectedRows[0].Cells[0].Value.ToString();
-            txtSupplierName.Text = grdData.SelectedRows[0].Cells[1].Value.ToString();
-            txtAddressLine1.Text = grdData.SelectedRows[0].Cells[2].Value.ToString();
-            txtAddressLine2.Text = grdData.SelectedRows[0].Cells[3].Value.ToString();
-            txtTown.Text= grdData.SelectedRows[0].Cells[4].Value.ToString();
-            txtCounty.Text = grdData.SelectedRows[0].Cells[5].Value.ToString();
-            txtEmail.Text = grdData.SelectedRows[0].Cells[6].Value.ToString();
-            txtPhone.Text = grdData.SelectedRows[0].Cells[7].Value.ToString();
-            txtStatus.Text = grdData.SelectedRows[0].Cells[8].Value.ToString();
-
-            grpSupplier.Show();
-        }
 
         private void btnUpdateSupplier_Click(object sender, EventArgs e)
         {
@@ -191,6 +179,22 @@ namespace WindowsFormsApp1
         private void frmUpdateSupplier_Activated(object sender, EventArgs e)
         {
             txtSearch.Focus();
+        }
+
+        private void grdData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            txtSupplierId.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            txtSupplierName.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[1].Value.ToString();
+            txtAddressLine1.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[2].Value.ToString();
+            txtAddressLine2.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[3].Value.ToString();
+            txtTown.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[4].Value.ToString();
+            txtCounty.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[5].Value.ToString();
+            txtEmail.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[6].Value.ToString();
+            txtPhone.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[7].Value.ToString();
+            txtStatus.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[8].Value.ToString();
+
+            grpSupplier.Show();
         }
     }
 }

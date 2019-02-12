@@ -27,6 +27,10 @@ namespace WindowsFormsApp1
 
         private void frmUpdateStock_Load(object sender, EventArgs e)
         {
+            DataSet ds = new DataSet();
+
+            grdData.DataSource = Stock.getAvailableStock(ds, txtSearch.Text).Tables["stk"];
+
             grpStock.Hide();
         }
 
@@ -46,21 +50,9 @@ namespace WindowsFormsApp1
         {
             DataSet ds = new DataSet();
 
-            grdData.DataSource = Stock.getUpdateStock(ds, txtSearch.Text).Tables["stk"];
+            grdData.DataSource = Stock.getAvailableStock(ds, txtSearch.Text.ToUpper()).Tables["stk"];
         }
 
-        private void grdData_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            txtStockId.Text = grdData.SelectedRows[0].Cells[0].Value.ToString();
-            txtStockName.Text = grdData.SelectedRows[0].Cells[1].Value.ToString();
-            txtDescription.Text = grdData.SelectedRows[0].Cells[2].Value.ToString();
-            txtAmount.Text = grdData.SelectedRows[0].Cells[3].Value.ToString();
-            txtPrice.Text = grdData.SelectedRows[0].Cells[4].Value.ToString();
-            txtSupplier.Text = grdData.SelectedRows[0].Cells[5].Value.ToString();
-            txtStatus.Text = grdData.SelectedRows[0].Cells[6].Value.ToString();
-
-            grpStock.Show();
-        }
 
         private void btnUpdateStock_Click(object sender, EventArgs e)
         {
@@ -87,15 +79,9 @@ namespace WindowsFormsApp1
                 txtSupplier.Focus();
             }
 
-            Boolean validStatus = Validation.ValidateStatus(txtStatus.Text);
+            
 
-            if (validStatus == false)
-            {
-                txtStatus.Focus();
-                MessageBox.Show("Status has to be 1 character long");
-            }
-
-            if (valid && validDesc && validSupplier && validStatus)
+            if (valid && validDesc && validSupplier )
             {
 
 
@@ -106,16 +92,16 @@ namespace WindowsFormsApp1
                 int amount = Convert.ToInt16(txtAmount.Text);
                 float price = float.Parse(txtPrice.Text);
                 int supplier = Convert.ToInt16(txtSupplier.Text);
-                string status = txtStatus.Text;
+                
 
-                MessageBox.Show(""+StockId+name+description+amount+price+supplier+status);
+                MessageBox.Show(""+StockId+name+description+amount+price+supplier);
 
 
                 //connect to the db
                 OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
                 //define Sql Command
-                String strSQL = "UPDATE Stock SET StockName = '" + name + "',Description = '" + description + "',Amount = " + amount + ", Price = " + price + ", SupplierId = " + supplier + ", Status = '" + status + "' where StockId = " + StockId;
+                String strSQL = "UPDATE Stock SET StockName = '" + name + "',Description = '" + description + "',Amount = " + amount + ", Price = " + price + ", SupplierId = " + supplier + ", Status = 'A' where StockId = " + StockId;
                 MessageBox.Show("Here");
 
                 //Execute Query
@@ -142,9 +128,24 @@ namespace WindowsFormsApp1
                 txtAmount.Clear();
                 txtPrice.Clear();
                 txtSupplier.Clear();
-                txtStatus.Clear();
+                
                 
             }
+        }
+
+        private void grdData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+            txtStockId.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            txtStockName.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[1].Value.ToString();
+            txtDescription.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[2].Value.ToString();
+            txtAmount.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[3].Value.ToString();
+            txtPrice.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[4].Value.ToString();
+            txtSupplier.Text = grdData.Rows[grdData.CurrentCell.RowIndex].Cells[5].Value.ToString();
+            
+
+            grpStock.Show();
+
         }
     }
 }

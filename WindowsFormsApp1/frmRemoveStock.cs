@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,14 +45,52 @@ namespace WindowsFormsApp1
         {
             DataSet ds = new DataSet();
 
-            grdData.DataSource = Stock.getUpdateStock(ds, txtSearch.Text).Tables["stk"];
+            grdData.DataSource = Stock.getAvailableStock(ds, txtSearch.Text).Tables["stk"];
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
 
-            grdData.DataSource = Stock.getUpdateStock(ds, txtSearch.Text).Tables["stk"];
+            grdData.DataSource = Stock.getAvailableStock(ds, txtSearch.Text).Tables["stk"];
         }
+
+        private void grdData_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            txtStockId.Text = grdData.SelectedRows[0].Cells[0].Value.ToString();
+            txtStockName.Text = grdData.SelectedRows[0].Cells[1].Value.ToString();
+            int amount = Convert.ToInt16(grdData.SelectedRows[0].Cells[3].Value);
+            string status = grdData.SelectedRows[0].Cells[6].Value.ToString();
+            
+        }
+
+        private void btnRemoveStock_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt16(txtStockId.Text);
+            string name = txtStockName.Text;
+
+            MessageBox.Show("Here");
+
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+            String strSQL = "UPDATE Stock SET Status = 'D' WHERE StockId ="+id;
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            connect.Open();
+
+            cmd.ExecuteNonQuery();
+
+            //Close Db
+            connect.Close();
+
+            txtSearch.Clear();
+            txtStockId.Clear();
+            txtStockName.Clear();
+        }
+    
     }
 }
