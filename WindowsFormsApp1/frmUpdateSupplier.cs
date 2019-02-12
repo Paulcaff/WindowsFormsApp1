@@ -39,21 +39,15 @@ namespace WindowsFormsApp1
 
         private void frmUpdateSupplier_Load(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-
-            grdData.DataSource = Supplier.getUpdateSupplier(ds, txtSearch.Text).Tables["stk"];
-
             txtSearch.Focus();
-            grpSupplier.Hide();
-
-            
+            grpSupplier.Hide();   
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
 
-            grdData.DataSource = Supplier.getUpdateSupplier(ds,txtSearch.Text).Tables["stk"];
+            grdData.DataSource = Supplier.getAvailableSupplier(ds,txtSearch.Text).Tables["stk"];
 
             
 
@@ -169,6 +163,7 @@ namespace WindowsFormsApp1
                 txtEmail.Clear();
                 txtPhone.Clear();
                 txtStatus.Clear();
+                txtSearch.Clear();
                 txtSearch.Focus();
             }
 

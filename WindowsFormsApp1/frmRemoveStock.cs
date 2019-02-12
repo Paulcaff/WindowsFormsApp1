@@ -36,18 +36,7 @@ namespace WindowsFormsApp1
             Application.Exit();
         }
 
-        private void RemoveStock_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmRemoveStock_Load(object sender, EventArgs e)
-        {
-            DataSet ds = new DataSet();
-
-            grdData.DataSource = Stock.getAvailableStock(ds, txtSearch.Text).Tables["stk"];
-        }
-
+     
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
@@ -55,14 +44,13 @@ namespace WindowsFormsApp1
             grdData.DataSource = Stock.getAvailableStock(ds, txtSearch.Text).Tables["stk"];
         }
 
-        private void grdData_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void grdData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtStockId.Text = grdData.SelectedRows[0].Cells[0].Value.ToString();
             txtStockName.Text = grdData.SelectedRows[0].Cells[1].Value.ToString();
-            int amount = Convert.ToInt16(grdData.SelectedRows[0].Cells[3].Value);
-            string status = grdData.SelectedRows[0].Cells[6].Value.ToString();
-            
         }
+
+
 
         private void btnRemoveStock_Click(object sender, EventArgs e)
         {
@@ -91,6 +79,7 @@ namespace WindowsFormsApp1
             txtStockId.Clear();
             txtStockName.Clear();
         }
-    
+
+        
     }
 }

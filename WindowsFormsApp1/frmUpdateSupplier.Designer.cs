@@ -50,10 +50,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtSupplierId = new System.Windows.Forms.TextBox();
             this.grpSupplier = new System.Windows.Forms.GroupBox();
+            this.txtStatus = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.grpSupplier.SuspendLayout();
@@ -244,13 +244,6 @@
             this.label9.TabIndex = 19;
             this.label9.Text = "Status";
             // 
-            // txtStatus
-            // 
-            this.txtStatus.Location = new System.Drawing.Point(250, 313);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(159, 20);
-            this.txtStatus.TabIndex = 20;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -295,6 +288,13 @@
             this.grpSupplier.TabIndex = 23;
             this.grpSupplier.TabStop = false;
             this.grpSupplier.Text = "Supplier Details";
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Location = new System.Drawing.Point(250, 313);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(159, 20);
+            this.txtStatus.TabIndex = 20;
             // 
             // frmUpdateSupplier
             // 
@@ -345,9 +345,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtSupplierId;
         private System.Windows.Forms.GroupBox grpSupplier;
+        private System.Windows.Forms.TextBox txtStatus;
     }
 }

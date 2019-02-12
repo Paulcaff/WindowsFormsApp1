@@ -102,7 +102,7 @@ namespace WindowsFormsApp1
             {
 
                 int supplierId = Convert.ToInt16(Supplier.getNextSupplierId());
-                string name = txtSupplierName.Text;
+                string name = txtSupplierName.Text.ToUpper();
                 string add1 = txtAddressLine1.Text;
                 string add2 = txtAddressLine2.Text;
                 string town = txtTown.Text;

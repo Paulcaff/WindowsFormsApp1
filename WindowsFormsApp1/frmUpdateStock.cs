@@ -27,11 +27,7 @@ namespace WindowsFormsApp1
 
         private void frmUpdateStock_Load(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-
-            grdData.DataSource = Stock.getAvailableStock(ds, txtSearch.Text).Tables["stk"];
-
-            grpStock.Hide();
+           grpStock.Hide();
         }
 
         private void backToolStripMenuItem_Click(object sender, EventArgs e)

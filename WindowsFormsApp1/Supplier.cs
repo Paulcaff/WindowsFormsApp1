@@ -219,14 +219,14 @@ namespace WindowsFormsApp1
         }
 
 
-        public static DataSet getUpdateSupplier(DataSet ds,string search)
+        public static DataSet getAvailableSupplier(DataSet ds,string search)
         {
 
             //connect to the db
             OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
             //define Sql Command
-            String strSQL = "Select * From Supplier Where SupplierName LIKE '%"+search+"%'" ;
+            String strSQL = "Select * From Supplier Where SupplierName LIKE '"+search.ToUpper()+"%' AND Status = 'A'" ;
 
             //Execute Query
             OracleCommand cmd = new OracleCommand(strSQL, connect);

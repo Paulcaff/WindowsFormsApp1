@@ -102,7 +102,8 @@
             this.grdData.Name = "grdData";
             this.grdData.Size = new System.Drawing.Size(400, 150);
             this.grdData.TabIndex = 5;
-            this.grdData.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdData_RowHeaderMouseDoubleClick);
+            this.grdData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);
+         
             // 
             // label2
             // 
@@ -155,7 +156,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmRemoveStock";
             this.Text = "Remove Stock";
-            this.Load += new System.EventHandler(this.frmRemoveStock_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();

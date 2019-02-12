@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,6 +34,47 @@ namespace WindowsFormsApp1
         private void mnuExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void grdData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtSupplierId.Text = grdData.SelectedRows[0].Cells[0].Value.ToString();
+            txtSupplierName.Text = grdData.SelectedRows[0].Cells[1].Value.ToString();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+
+            grdData.DataSource = Supplier.getAvailableSupplier(ds, txtSearch.Text).Tables["stk"];
+        }
+
+        private void btnCloseSupplierAccount_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt16(txtSupplierId.Text);
+            string name = txtSupplierName.Text;
+
+            MessageBox.Show("Here");
+
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+            String strSQL = "UPDATE Supplier SET Status = 'D' WHERE SupplierId =" + id;
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            connect.Open();
+
+            cmd.ExecuteNonQuery();
+
+            //Close Db
+            connect.Close();
+
+            txtSearch.Clear();
+            txtSupplierId.Clear();
+            txtSupplierName.Clear();
         }
     }
 }

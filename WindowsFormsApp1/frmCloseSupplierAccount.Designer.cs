@@ -32,10 +32,15 @@
             this.mnuBack = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnCloseSupplierAccount = new System.Windows.Forms.Button();
+            this.grdData = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSupplierId = new System.Windows.Forms.TextBox();
+            this.txtSupplierName = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -72,38 +77,66 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Supplier Name / ID";
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(215, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(174, 20);
-            this.textBox1.TabIndex = 2;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "1  Diageo   No.4   Main Street   Tralee   Co.Kerry   066 123456   Diageo@diageosa" +
-                "les.com   1256.00 ",
-            "2  Heineken   No.5   Main Street   Killarney   Co.Kerry   066 654321   Heineken@h" +
-                "einekensales.com   6521.00 ",
-            "3  Cash & Carry   No.6   Main Street   Killorglin   Co.Kerry   066 657483   C&C@c" +
-                "ashandcarrysales.com   356.00 "});
-            this.listBox1.Location = new System.Drawing.Point(20, 138);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(531, 147);
-            this.listBox1.TabIndex = 3;
+            this.txtSearch.Location = new System.Drawing.Point(215, 69);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(174, 20);
+            this.txtSearch.TabIndex = 2;
+            this.txtSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnCloseSupplierAccount
             // 
-            this.btnCloseSupplierAccount.Location = new System.Drawing.Point(130, 343);
+            this.btnCloseSupplierAccount.Location = new System.Drawing.Point(165, 389);
             this.btnCloseSupplierAccount.Name = "btnCloseSupplierAccount";
             this.btnCloseSupplierAccount.Size = new System.Drawing.Size(224, 38);
             this.btnCloseSupplierAccount.TabIndex = 4;
             this.btnCloseSupplierAccount.Text = "Close Supplier Account";
             this.btnCloseSupplierAccount.UseVisualStyleBackColor = true;
+            this.btnCloseSupplierAccount.Click += new System.EventHandler(this.btnCloseSupplierAccount_Click);
+            // 
+            // grdData
+            // 
+            this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdData.Location = new System.Drawing.Point(37, 116);
+            this.grdData.Name = "grdData";
+            this.grdData.Size = new System.Drawing.Size(514, 150);
+            this.grdData.TabIndex = 5;
+            this.grdData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(96, 289);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "SupplierId";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(96, 344);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Supplier Name";
+            // 
+            // txtSupplierId
+            // 
+            this.txtSupplierId.Enabled = false;
+            this.txtSupplierId.Location = new System.Drawing.Point(215, 289);
+            this.txtSupplierId.Name = "txtSupplierId";
+            this.txtSupplierId.Size = new System.Drawing.Size(100, 20);
+            this.txtSupplierId.TabIndex = 8;
+            // 
+            // txtSupplierName
+            // 
+            this.txtSupplierName.Enabled = false;
+            this.txtSupplierName.Location = new System.Drawing.Point(215, 336);
+            this.txtSupplierName.Name = "txtSupplierName";
+            this.txtSupplierName.Size = new System.Drawing.Size(174, 20);
+            this.txtSupplierName.TabIndex = 9;
             // 
             // frmCloseSupplierAccount
             // 
@@ -111,9 +144,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(563, 450);
+            this.Controls.Add(this.txtSupplierName);
+            this.Controls.Add(this.txtSupplierId);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.grdData);
             this.Controls.Add(this.btnCloseSupplierAccount);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -121,6 +158,7 @@
             this.Text = "Close Supplier Account";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,8 +170,12 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBack;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnCloseSupplierAccount;
+        private System.Windows.Forms.DataGridView grdData;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtSupplierId;
+        private System.Windows.Forms.TextBox txtSupplierName;
     }
 }
