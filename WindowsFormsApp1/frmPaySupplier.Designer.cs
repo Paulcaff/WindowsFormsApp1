@@ -103,6 +103,7 @@
             this.btnPaySupplier.TabIndex = 6;
             this.btnPaySupplier.Text = "Pay Supplier";
             this.btnPaySupplier.UseVisualStyleBackColor = true;
+            this.btnPaySupplier.Click += new System.EventHandler(this.btnPaySupplier_Click);
             // 
             // label3
             // 

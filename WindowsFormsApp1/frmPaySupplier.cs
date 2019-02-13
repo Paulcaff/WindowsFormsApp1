@@ -49,5 +49,31 @@ namespace WindowsFormsApp1
 
             grdData.DataSource = Supplier.getAvailableSupplier(ds, txtSearchSupplier.Text).Tables["stk"];
         }
+
+        private void btnPaySupplier_Click(object sender, EventArgs e)
+        {
+            float pay = float.Parse(txtAmountToPay.Text);
+            float balance = float.Parse(txtBalance.Text);
+
+            if(balance > 0)
+            {
+                if(balance>pay)
+                {
+                    float remainder = balance - pay;
+
+                    
+
+                }
+                else
+                {
+                    MessageBox.Show("The amount you want to pay exceeds the balance");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("The balance is zero so Cannot be paid");
+            }
+        }
     }
 }
