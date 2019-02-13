@@ -41,8 +41,12 @@
             this.txtBalance = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSupplierName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSupplierId = new System.Windows.Forms.TextBox();
+            this.grpPaySupplier = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
+            this.grpPaySupplier.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -73,7 +77,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(71, 325);
+            this.label1.Location = new System.Drawing.Point(98, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 2;
@@ -82,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 361);
+            this.label2.Location = new System.Drawing.Point(98, 115);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 4;
@@ -90,14 +94,14 @@
             // 
             // txtAmountToPay
             // 
-            this.txtAmountToPay.Location = new System.Drawing.Point(194, 354);
+            this.txtAmountToPay.Location = new System.Drawing.Point(230, 112);
             this.txtAmountToPay.Name = "txtAmountToPay";
             this.txtAmountToPay.Size = new System.Drawing.Size(158, 20);
             this.txtAmountToPay.TabIndex = 5;
             // 
             // btnPaySupplier
             // 
-            this.btnPaySupplier.Location = new System.Drawing.Point(107, 398);
+            this.btnPaySupplier.Location = new System.Drawing.Point(83, 156);
             this.btnPaySupplier.Name = "btnPaySupplier";
             this.btnPaySupplier.Size = new System.Drawing.Size(245, 40);
             this.btnPaySupplier.TabIndex = 6;
@@ -124,9 +128,12 @@
             // 
             // grdData
             // 
+            this.grdData.AllowUserToAddRows = false;
+            this.grdData.AllowUserToDeleteRows = false;
             this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdData.Location = new System.Drawing.Point(12, 78);
             this.grdData.Name = "grdData";
+            this.grdData.ReadOnly = true;
             this.grdData.Size = new System.Drawing.Size(495, 150);
             this.grdData.TabIndex = 9;
             this.grdData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);
@@ -134,7 +141,7 @@
             // txtBalance
             // 
             this.txtBalance.Enabled = false;
-            this.txtBalance.Location = new System.Drawing.Point(194, 318);
+            this.txtBalance.Location = new System.Drawing.Point(230, 76);
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.Size = new System.Drawing.Size(158, 20);
             this.txtBalance.TabIndex = 10;
@@ -142,7 +149,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(74, 288);
+            this.label4.Location = new System.Drawing.Point(98, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 13);
             this.label4.TabIndex = 11;
@@ -151,33 +158,65 @@
             // txtSupplierName
             // 
             this.txtSupplierName.Enabled = false;
-            this.txtSupplierName.Location = new System.Drawing.Point(194, 281);
+            this.txtSupplierName.Location = new System.Drawing.Point(230, 43);
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.Size = new System.Drawing.Size(158, 20);
             this.txtSupplierName.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(98, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Supplier Id";
+            // 
+            // txtSupplierId
+            // 
+            this.txtSupplierId.Enabled = false;
+            this.txtSupplierId.Location = new System.Drawing.Point(230, 8);
+            this.txtSupplierId.Name = "txtSupplierId";
+            this.txtSupplierId.Size = new System.Drawing.Size(158, 20);
+            this.txtSupplierId.TabIndex = 14;
+            // 
+            // grpPaySupplier
+            // 
+            this.grpPaySupplier.Controls.Add(this.txtSupplierId);
+            this.grpPaySupplier.Controls.Add(this.label5);
+            this.grpPaySupplier.Controls.Add(this.txtSupplierName);
+            this.grpPaySupplier.Controls.Add(this.label4);
+            this.grpPaySupplier.Controls.Add(this.txtBalance);
+            this.grpPaySupplier.Controls.Add(this.btnPaySupplier);
+            this.grpPaySupplier.Controls.Add(this.txtAmountToPay);
+            this.grpPaySupplier.Controls.Add(this.label2);
+            this.grpPaySupplier.Controls.Add(this.label1);
+            this.grpPaySupplier.Location = new System.Drawing.Point(12, 234);
+            this.grpPaySupplier.Name = "grpPaySupplier";
+            this.grpPaySupplier.Size = new System.Drawing.Size(495, 214);
+            this.grpPaySupplier.TabIndex = 15;
+            this.grpPaySupplier.TabStop = false;
+            this.grpPaySupplier.Text = "Supplier Detail";
             // 
             // frmPaySupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 450);
-            this.Controls.Add(this.txtSupplierName);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtBalance);
+            this.Controls.Add(this.grpPaySupplier);
             this.Controls.Add(this.grdData);
             this.Controls.Add(this.txtSearchSupplier);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnPaySupplier);
-            this.Controls.Add(this.txtAmountToPay);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmPaySupplier";
             this.Text = "Pay Supplier";
+            this.Load += new System.EventHandler(this.frmPaySupplier_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();
+            this.grpPaySupplier.ResumeLayout(false);
+            this.grpPaySupplier.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,5 +237,8 @@
         private System.Windows.Forms.TextBox txtBalance;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSupplierName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtSupplierId;
+        private System.Windows.Forms.GroupBox grpPaySupplier;
     }
 }

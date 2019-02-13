@@ -206,7 +206,26 @@ namespace WindowsFormsApp1
         }
 
 
+        public static Boolean ValidateAmount(string amount)
+        {
+            Boolean valid = false;
+            var regexAdd = new Regex("^[0-9]+(.[0-9][0-9])?$");
 
+            if (!amount.Equals(""))
+            {
+                if (regexAdd.IsMatch(amount))
+                {
+                    valid = true;
+                }
+            }
+
+            else
+            {
+                valid = false;
+            }
+
+            return valid;
+        }
 
 
 
