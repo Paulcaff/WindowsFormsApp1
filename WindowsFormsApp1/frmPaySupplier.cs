@@ -97,7 +97,8 @@ namespace WindowsFormsApp1
                         txtSearchSupplier.Clear();
                         txtBalance.Clear();
                         txtAmountToPay.Clear();
-                        grdData.ClearSelection();
+                        
+                        grdData.DataSource = null;
                         
 
 
