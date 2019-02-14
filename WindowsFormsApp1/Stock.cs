@@ -161,6 +161,33 @@ namespace WindowsFormsApp1
             //return Query Result
             return ds;
         }
+
+        public static DataSet getStocktoBuy(DataSet ds, int id)
+        {
+
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+            String strSQL = "Select * From Stock Where StockId = "+id+ " AND Status = 'A'";
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            //create oracle adapter
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            //Fill The Dataset with query result;
+            da.Fill(ds, "stk");
+
+            //Close Db
+            connect.Close();
+
+
+            //return Query Result
+            return ds;
+        }
+
         public void AddStock()
         {
 

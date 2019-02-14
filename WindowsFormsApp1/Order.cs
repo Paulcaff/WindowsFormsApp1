@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,7 +83,33 @@ namespace WindowsFormsApp1
             return Status;
         }
 
+        public static int getNextOrderId()
+        {
+            int nextOrderId = 1;
+            //Connect to DB
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
+            connect.Open();
+
+            //define Sql Command
+            String strSQL = "SELECT MAX(OrderId) FROM ORDERS";
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            dr.Read();
+
+            if (dr.IsDBNull(0))
+                nextOrderId = 1;
+            else
+                nextOrderId = Convert.ToInt16(dr.GetValue(0)) + 1;
+
+            connect.Close();
+
+            return nextOrderId;
+        }
 
 
 
