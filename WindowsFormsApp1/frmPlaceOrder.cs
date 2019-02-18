@@ -61,9 +61,12 @@ namespace WindowsFormsApp1
 
         private void grdDataStock_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //label8.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[4].Value.ToString();
+            //float price = float.Parse(label8.Text);
+            label7.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[0].Value.ToString();
+
             txtPrice.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[4].Value.ToString();
             float price = float.Parse(txtPrice.Text);
-            label7.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[0].Value.ToString();
 
         }
 
@@ -83,8 +86,8 @@ namespace WindowsFormsApp1
                 if (valid)
                 {
                 //Fix Here
-                int OrderId = Convert.ToInt16(label6);
-                int StockId = Convert.ToInt16(label7);
+                int OrderId = 1;//Convert.ToInt16(label6.Text);
+                int StockId = Convert.ToInt16(label7.Text);
                 float Price = float.Parse(txtPrice.Text);
                 int Quantity = Convert.ToInt16(txtAmountOrder.Text);
                 
@@ -105,8 +108,7 @@ namespace WindowsFormsApp1
 
                     connect.Open();
 
-
-                    cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
 
 
