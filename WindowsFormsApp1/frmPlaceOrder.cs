@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -47,8 +48,8 @@ namespace WindowsFormsApp1
 
         private void grdDataSupp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtIdForSearch.Text = grdDataSupp.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[0].Value.ToString();
-            int id = Convert.ToInt16(txtIdForSearch.Text);
+            label8.Text = grdDataSupp.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            int id = Convert.ToInt16(label8.Text);
 
             txtBalance.Text = "0.0";
       
@@ -61,8 +62,6 @@ namespace WindowsFormsApp1
 
         private void grdDataStock_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //label8.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[4].Value.ToString();
-            //float price = float.Parse(label8.Text);
             label7.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[0].Value.ToString();
 
             txtPrice.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[4].Value.ToString();
@@ -85,39 +84,108 @@ namespace WindowsFormsApp1
 
                 if (valid)
                 {
-                //Fix Here
-                int OrderId = 1;//Convert.ToInt16(label6.Text);
+                
+                int OrderId = Convert.ToInt16(label6.Text);
                 int StockId = Convert.ToInt16(label7.Text);
                 float Price = float.Parse(txtPrice.Text);
                 int Quantity = Convert.ToInt16(txtAmountOrder.Text);
-                
-                    MessageBox.Show("" + OrderId + StockId + Price + Quantity);
+                int SupplierId = Convert.ToInt16(label8.Text);
+                string Status = "A";
+                float total = float.Parse(txtBalance.Text);
 
+                DateTime dt = DateTime.Now;
+                string date = dt.ToString("dd-MMM-yyyy");
 
-                    //connect to the db
-                    OracleConnection connect = new OracleConnection(DBConnect.oradb);
-
-                    //define Sql Command
-                    String strSQL = "INSERT INTO OrderItems VALUES("+OrderId+","+StockId +","+ Price +","+ Quantity+")" ;
-                    MessageBox.Show("Here");
-
-                    //Execute Query
-                    OracleCommand cmd = new OracleCommand(strSQL, connect);
-
-
-
-                    connect.Open();
-
-                cmd.ExecuteNonQuery();
+                MessageBox.Show("" + date);
 
 
 
 
-                    //Close Db
-                    connect.Close();
 
 
-                    txtAmountOrder.Clear();
+                using (OracleConnection connection = new OracleConnection(DBConnect.oradb))
+                {
+                    connection.Open();
+
+                    OracleCommand command = connection.CreateCommand();
+                    OracleTransaction transaction;
+
+                    // Start a local transaction.
+                    transaction = connection.BeginTransaction();
+
+                    // Must assign both transaction object and connection
+                    // to Command object for a pending local transaction
+                    command.Connection = connection;
+                    command.Transaction = transaction;
+
+                    try
+                    {
+                        //microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=netframework-4.7.2
+                        MessageBox.Show("Here");
+
+                        command.CommandText =
+                            "Insert into Orders VALUES (" + OrderId + ",'" + date + "'," + SupplierId + "," + total + ",'" + Status + "')";
+                        command.ExecuteNonQuery();
+
+                        MessageBox.Show("Here");
+
+                        command.CommandText =
+                             "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + Price + "," + Quantity + ")";
+                        command.ExecuteNonQuery();
+
+                        MessageBox.Show("Here");
+
+                        // Attempt to commit the transaction.
+                        transaction.Commit();
+                        Console.WriteLine("Both records are written to database.");
+                    }
+                    
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                        Console.WriteLine("  Message: {0}", ex.Message);
+
+                        // Attempt to roll back the transaction.
+                        try
+                        {
+                            transaction.Rollback();
+                        }
+                        catch (Exception ex2)
+                        {
+                            // This catch block will handle any errors that may have occurred
+                            // on the server that would cause the rollback to fail, such as
+                            // a closed connection.
+                            Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                            Console.WriteLine("  Message: {0}", ex2.Message);
+                        }
+                    }
+                }
+
+
+                /* //connect to the db
+                 OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+                 //define Sql Command
+                 String strSQL = "INSERT INTO OrderItems VALUES("+OrderId+","+StockId +","+ Price +","+ Quantity+")" ;
+                 MessageBox.Show("Here");
+
+                 //Execute Query
+                 OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+
+
+                 connect.Open();
+
+             cmd.ExecuteNonQuery();
+
+
+
+
+                 //Close Db
+                 connect.Close();*/
+
+
+                txtAmountOrder.Clear();
                    
 
 
