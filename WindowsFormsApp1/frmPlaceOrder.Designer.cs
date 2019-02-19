@@ -40,7 +40,7 @@ namespace WindowsFormsApp1
             this.btnRemove = new System.Windows.Forms.Button();
             this.grpAddCart = new System.Windows.Forms.GroupBox();
             this.txtAmountOrder = new System.Windows.Forms.NumericUpDown();
-            this.btnFinish = new System.Windows.Forms.Button();
+            this.btnCheckout = new System.Windows.Forms.Button();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnAddToCart = new System.Windows.Forms.Button();
@@ -149,7 +149,7 @@ namespace WindowsFormsApp1
             // grpAddCart
             // 
             this.grpAddCart.Controls.Add(this.txtAmountOrder);
-            this.grpAddCart.Controls.Add(this.btnFinish);
+            this.grpAddCart.Controls.Add(this.btnCheckout);
             this.grpAddCart.Controls.Add(this.txtPrice);
             this.grpAddCart.Controls.Add(this.label4);
             this.grpAddCart.Controls.Add(this.btnAddToCart);
@@ -168,14 +168,15 @@ namespace WindowsFormsApp1
             this.txtAmountOrder.TabIndex = 15;
             this.txtAmountOrder.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // btnFinish
+            // btnCheckout
             // 
-            this.btnFinish.Location = new System.Drawing.Point(212, 86);
-            this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Size = new System.Drawing.Size(130, 28);
-            this.btnFinish.TabIndex = 14;
-            this.btnFinish.Text = "Checkout";
-            this.btnFinish.UseVisualStyleBackColor = true;
+            this.btnCheckout.Location = new System.Drawing.Point(212, 86);
+            this.btnCheckout.Name = "btnCheckout";
+            this.btnCheckout.Size = new System.Drawing.Size(130, 28);
+            this.btnCheckout.TabIndex = 14;
+            this.btnCheckout.Text = "Checkout";
+            this.btnCheckout.UseVisualStyleBackColor = true;
+            this.btnCheckout.Click += new System.EventHandler(this.btnCheckout_Click);
             // 
             // txtPrice
             // 
@@ -330,7 +331,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBalance;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnFinish;
+        private System.Windows.Forms.Button btnCheckout;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;

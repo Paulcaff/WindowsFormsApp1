@@ -48,7 +48,7 @@ namespace WindowsFormsApp1
             DataSet ds = new DataSet();
             grdDataSupp.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
 
-            grdDataCart.Columns.Add("OrderID","OrderId");
+            grdDataCart.Columns.Add("OrderID", "OrderId");
             grdDataCart.Columns.Add("StockID", "StockId");
             grdDataCart.Columns.Add("StockName", "StockName");
             grdDataCart.Columns.Add("Price", "Price");
@@ -109,7 +109,7 @@ namespace WindowsFormsApp1
 
                 decimal StockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
 
-                MessageBox.Show(""+ StockRemaining);
+                MessageBox.Show("" + StockRemaining);
 
                 grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value = StockRemaining;
 
@@ -260,7 +260,90 @@ namespace WindowsFormsApp1
         {
             btnRemove.Show();
         }
-    }
 
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+
+            int OrderId = Convert.ToInt16(label6.Text);
+
+
+            int SupplierId = Convert.ToInt16(label8.Text);
+            string Status = "A";
+            float total = float.Parse(txtBalance.Text);
+
+            DateTime dt = DateTime.Now;
+            string date = dt.ToString("dd-MMM-yyyy");
+
+            using (OracleConnection connection = new OracleConnection(DBConnect.oradb))
+            {
+                connection.Open();
+
+                OracleCommand command = connection.CreateCommand();
+                OracleTransaction transaction;
+
+                // Start a local transaction.
+                transaction = connection.BeginTransaction();
+
+                // Must assign both transaction object and connection
+                // to Command object for a pending local transaction
+                command.Connection = connection;
+                command.Transaction = transaction;
+
+               // try
+               // {
+                    //microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=netframework-4.7.2
+                    MessageBox.Show("Here");
+
+                    command.CommandText =
+                        "Insert into Orders VALUES (" + OrderId + ",'" + date + "'," + SupplierId + "," + total + ",'" + Status + "')";
+                    command.ExecuteNonQuery();
+
+                    MessageBox.Show("Here");
+                    int StockId = 1;
+                    float price = 5;
+                    int quantity = 4;
+                    decimal stockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
+
+                    command.CommandText =
+                         "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + price + "," + quantity + ")";
+                    command.ExecuteNonQuery();
+
+                    command.CommandText =
+                        "UPDATE Stock SET Amount = "+stockRemaining+"where StockId = "+StockId;
+                    command.ExecuteNonQuery();
+
+
+
+                    MessageBox.Show("Here");
+
+                    // Attempt to commit the transaction.
+                    transaction.Commit();
+
+                /*}
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                    Console.WriteLine("  Message: {0}", ex.Message);
+
+                    // Attempt to roll back the transaction.
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        // This catch block will handle any errors that may have occurred
+                        // on the server that would cause the rollback to fail, such as
+                        // a closed connection.
+                        Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                        Console.WriteLine("  Message: {0}", ex2.Message);
+                    }
+                }*/
+
+            }
+        }
+
+    }
 }
 
