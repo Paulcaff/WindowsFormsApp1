@@ -53,6 +53,7 @@ namespace WindowsFormsApp1
             grdDataCart.Columns.Add("StockName", "StockName");
             grdDataCart.Columns.Add("Price", "Price");
             grdDataCart.Columns.Add("Quantity", "Quantity");
+            grdDataCart.Columns.Add("Total for Product", "Total For Product");
         }
 
         private void grdDataSupp_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -84,27 +85,54 @@ namespace WindowsFormsApp1
         private void btnAddToCart_Click(object sender, EventArgs e)
         {
 
+            if (txtAmountOrder.Value <= Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()))
+            {
 
-            //add item to cart
-            string OrderId =label6.Text;
-            string StockId = grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[0].Value.ToString();
-            StockId = StockId.PadLeft(4,'0');
-            string StockName = grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[1].Value.ToString();
-            StockName = StockName.PadRight(20,' ');
-            float price = float.Parse(grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[4].Value.ToString());
-            price.ToString("####.##");
-            string quantity = txtAmountOrder.Text;
-            quantity = quantity.PadLeft(4,'0');
 
-            this.grdDataCart.Rows.Add(OrderId,StockId,StockName,price,quantity);
 
-            string addItem = ""+OrderId+"  "+StockId+"  "+StockName+"  "+price+"  "+quantity;
-            lstCart.Items.Add(addItem);
 
-            float balance = float.Parse(txtBalance.Text) + (price * Convert.ToInt16(quantity));
+                //add item to cart
+                int OrderId = Convert.ToInt16(label6.Text);
+                int StockId = Convert.ToInt16(grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                string StockName = grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                float price = float.Parse(grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[4].Value.ToString());
+                int quantity = Convert.ToInt16(txtAmountOrder.Text);
+                float total = price * quantity;
+
+
+                this.grdDataCart.Rows.Add(OrderId, StockId, StockName, price, quantity, total);
+
+
+
+                float balance = float.Parse(txtBalance.Text) + (price * Convert.ToInt16(quantity));
+                txtBalance.Text = balance.ToString();
+
+                decimal StockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
+
+                MessageBox.Show(""+ StockRemaining);
+
+                grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value = StockRemaining;
+
+            }
+
+            else
+            {
+                MessageBox.Show("Not enough in stock to order");
+            }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            float deduction = float.Parse(grdDataCart.Rows[grdDataCart.CurrentCell.RowIndex].Cells[5].Value.ToString());
+            grdDataCart.Rows.Remove(grdDataCart.CurrentRow);
+
+            float balance = float.Parse(txtBalance.Text) - (deduction);
             txtBalance.Text = balance.ToString();
 
+            decimal originalStock = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) + txtAmountOrder.Value;
+            MessageBox.Show("" + originalStock);
 
+            grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value = originalStock;
 
 
         }
@@ -228,18 +256,9 @@ namespace WindowsFormsApp1
         */
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            lstCart.Items.RemoveAt(lstCart.SelectedIndex);
-            
-        }
-
-      
-        private void lstCart_SelectedIndexChanged(object sender, EventArgs e)
+        private void grdDataCart_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnRemove.Show();
-           // float balance = float.Parse(txtBalance.Text) - (price * Convert.ToInt16(quantity));
-           // txtBalance.Text = balance.ToString();
         }
     }
 

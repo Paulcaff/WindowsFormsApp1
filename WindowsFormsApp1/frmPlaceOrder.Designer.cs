@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApp1
+﻿using System;
+
+namespace WindowsFormsApp1
 {
     partial class frmPlaceOrder
     {
@@ -34,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.grdDataSupp = new System.Windows.Forms.DataGridView();
             this.grpStockSelection = new System.Windows.Forms.GroupBox();
+            this.grdDataCart = new System.Windows.Forms.DataGridView();
             this.btnRemove = new System.Windows.Forms.Button();
             this.grpAddCart = new System.Windows.Forms.GroupBox();
             this.txtAmountOrder = new System.Windows.Forms.NumericUpDown();
@@ -42,7 +45,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.lstCart = new System.Windows.Forms.ListBox();
             this.txtBalance = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.grdDataStock = new System.Windows.Forms.DataGridView();
@@ -50,14 +52,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.grdDataCart = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDataSupp)).BeginInit();
             this.grpStockSelection.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDataCart)).BeginInit();
             this.grpAddCart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDataStock)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdDataCart)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -67,7 +68,7 @@
             this.mnuExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(928, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -109,23 +110,35 @@
             // 
             // grpStockSelection
             // 
+            this.grpStockSelection.Controls.Add(this.grdDataCart);
             this.grpStockSelection.Controls.Add(this.btnRemove);
             this.grpStockSelection.Controls.Add(this.grpAddCart);
-            this.grpStockSelection.Controls.Add(this.lstCart);
             this.grpStockSelection.Controls.Add(this.txtBalance);
             this.grpStockSelection.Controls.Add(this.label5);
             this.grpStockSelection.Controls.Add(this.grdDataStock);
             this.grpStockSelection.Controls.Add(this.label2);
             this.grpStockSelection.Location = new System.Drawing.Point(12, 212);
             this.grpStockSelection.Name = "grpStockSelection";
-            this.grpStockSelection.Size = new System.Drawing.Size(762, 385);
+            this.grpStockSelection.Size = new System.Drawing.Size(869, 385);
             this.grpStockSelection.TabIndex = 11;
             this.grpStockSelection.TabStop = false;
             this.grpStockSelection.Text = "Order Stock";
             // 
+            // grdDataCart
+            // 
+            this.grdDataCart.AllowUserToAddRows = false;
+            this.grdDataCart.AllowUserToDeleteRows = false;
+            this.grdDataCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdDataCart.Location = new System.Drawing.Point(458, 54);
+            this.grdDataCart.Name = "grdDataCart";
+            this.grdDataCart.ReadOnly = true;
+            this.grdDataCart.Size = new System.Drawing.Size(392, 150);
+            this.grdDataCart.TabIndex = 15;
+            this.grdDataCart.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDataCart_CellClick);
+            // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(660, 255);
+            this.btnRemove.Location = new System.Drawing.Point(773, 267);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(77, 24);
             this.btnRemove.TabIndex = 17;
@@ -202,19 +215,10 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Amount to Order";
             // 
-            // lstCart
-            // 
-            this.lstCart.FormattingEnabled = true;
-            this.lstCart.Location = new System.Drawing.Point(449, 67);
-            this.lstCart.Name = "lstCart";
-            this.lstCart.Size = new System.Drawing.Size(288, 134);
-            this.lstCart.TabIndex = 15;
-            this.lstCart.SelectedIndexChanged += new System.EventHandler(this.lstCart_SelectedIndexChanged);
-            // 
             // txtBalance
             // 
             this.txtBalance.Enabled = false;
-            this.txtBalance.Location = new System.Drawing.Point(660, 210);
+            this.txtBalance.Location = new System.Drawing.Point(773, 227);
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.Size = new System.Drawing.Size(77, 20);
             this.txtBalance.TabIndex = 13;
@@ -224,7 +228,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(547, 210);
+            this.label5.Location = new System.Drawing.Point(645, 230);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 13);
             this.label5.TabIndex = 12;
@@ -277,23 +281,11 @@
             this.label8.TabIndex = 14;
             this.label8.Visible = false;
             // 
-            // grdDataCart
-            // 
-            this.grdDataCart.AllowUserToAddRows = false;
-            this.grdDataCart.AllowUserToDeleteRows = false;
-            this.grdDataCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdDataCart.Location = new System.Drawing.Point(461, 56);
-            this.grdDataCart.Name = "grdDataCart";
-            this.grdDataCart.ReadOnly = true;
-            this.grdDataCart.Size = new System.Drawing.Size(288, 150);
-            this.grdDataCart.TabIndex = 15;
-            // 
             // frmPlaceOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 634);
-            this.Controls.Add(this.grdDataCart);
+            this.ClientSize = new System.Drawing.Size(928, 634);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -310,15 +302,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdDataSupp)).EndInit();
             this.grpStockSelection.ResumeLayout(false);
             this.grpStockSelection.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDataCart)).EndInit();
             this.grpAddCart.ResumeLayout(false);
             this.grpAddCart.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDataStock)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdDataCart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+       
 
         #endregion
 
@@ -340,7 +334,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ListBox lstCart;
         private System.Windows.Forms.GroupBox grpAddCart;
         private System.Windows.Forms.NumericUpDown txtAmountOrder;
         private System.Windows.Forms.Button btnRemove;
