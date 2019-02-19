@@ -39,11 +39,13 @@ namespace WindowsFormsApp1
 
         private void frmPlaceOrder_Load(object sender, EventArgs e)
         {
-            
-            label6.Text = Order.getNextOrderId().ToString("00000");
+
+            label6.Text = Order.getNextOrderId().ToString("0000");
             grpStockSelection.Hide();
+            grpAddCart.Hide();
+
             DataSet ds = new DataSet();
-            grdDataSupp.DataSource = Supplier.getAllSuppliers(ds).Tables["stk"];
+            grdDataSupp.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
         }
 
         private void grdDataSupp_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -51,17 +53,18 @@ namespace WindowsFormsApp1
             label8.Text = grdDataSupp.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[0].Value.ToString();
             int id = Convert.ToInt16(label8.Text);
 
-            txtBalance.Text = "0.0";
-      
+            txtBalance.Text = "0.00";
+
 
             grpStockSelection.Show();
             DataSet ds = new DataSet();
             grdDataStock.DataSource = Stock.getStocktoBuy(ds, id).Tables["stk"];
-            
+
         }
 
         private void grdDataStock_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            grpAddCart.Show();
             label7.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[0].Value.ToString();
 
             txtPrice.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[4].Value.ToString();
@@ -71,20 +74,35 @@ namespace WindowsFormsApp1
 
         private void btnAddToCart_Click(object sender, EventArgs e)
         {
-           
-                Boolean valid = Validation.ValidateAmount(txtAmountOrder.Text);
 
-                if (valid == false)
-                {
-                txtAmountOrder.Focus();
-                    MessageBox.Show("Incorrect Amount entered");
-                }
 
-               
+            //add item to cart
+            string OrderId =label6.Text;
+            string StockId = grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            StockId = StockId.PadLeft(4,'0');
+            string StockName = grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[1].Value.ToString();
+            StockName = StockName.PadRight(20,' ');
+            float price = float.Parse(grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[4].Value.ToString());
+            price.ToString("####.##");
+            string quantity = txtAmountOrder.Text;
+            quantity = quantity.PadLeft(4,'0');
 
-                if (valid)
-                {
-                
+            string addItem = ""+OrderId+" "+StockId+" "+StockName+" "+price+" "+quantity;
+            lstCart.Items.Add(addItem);
+
+            float balance = float.Parse(txtBalance.Text) + (price * Convert.ToInt16(quantity));
+            txtBalance.Text = balance.ToString();
+
+        }
+        private void spareCode()
+        {
+
+
+            /*
+
+            if (valid)
+            {
+
                 int OrderId = Convert.ToInt16(label6.Text);
                 int StockId = Convert.ToInt16(label7.Text);
                 float Price = float.Parse(txtPrice.Text);
@@ -133,13 +151,15 @@ namespace WindowsFormsApp1
                              "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + Price + "," + Quantity + ")";
                         command.ExecuteNonQuery();
 
+                        txtBalance.Text = total + (Quantity * Price).ToString();
+
                         MessageBox.Show("Here");
 
                         // Attempt to commit the transaction.
                         transaction.Commit();
                         Console.WriteLine("Both records are written to database.");
                     }
-                    
+
                     catch (Exception ex)
                     {
                         Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
@@ -159,6 +179,7 @@ namespace WindowsFormsApp1
                             Console.WriteLine("  Message: {0}", ex2.Message);
                         }
                     }
+              
                 }
 
 
@@ -182,15 +203,19 @@ namespace WindowsFormsApp1
 
 
                  //Close Db
-                 connect.Close();*/
+                 connect.Close();
 
 
-                txtAmountOrder.Clear();
-                   
+            txtAmountOrder.Clear();
 
 
-                }
-            }
+
         }
+        */
+        }
+
+
     }
+
+}
 

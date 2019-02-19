@@ -260,6 +260,34 @@ namespace WindowsFormsApp1
             return ds;
         }
 
+        public static DataSet getSupplierSummary(DataSet ds)
+        {
+
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+            String strSQL = "Select SupplierId ,SupplierName ,Balance  From Supplier Where Status = 'A'";
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            //create oracle adapter
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            //Fill The Dataset with query result;
+            da.Fill(ds, "stk");
+
+            //Close Db
+            connect.Close();
+
+
+
+
+            //return Query Result
+            return ds;
+        }
+
     }
 }
 
