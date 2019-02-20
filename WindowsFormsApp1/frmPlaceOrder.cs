@@ -265,8 +265,6 @@ namespace WindowsFormsApp1
         {
 
             int OrderId = Convert.ToInt16(label6.Text);
-
-
             int SupplierId = Convert.ToInt16(label8.Text);
             string Status = "A";
             float total = float.Parse(txtBalance.Text);
@@ -299,17 +297,32 @@ namespace WindowsFormsApp1
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Here");
-                    int StockId = 1;
-                    float price = 5;
-                    int quantity = 4;
+                    
                     decimal stockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
 
-                    command.CommandText =
-                         "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + price + "," + quantity + ")";
-                    command.ExecuteNonQuery();
 
+                     foreach (DataGridViewRow row in grdDataCart.Rows)
+                    {
+                         foreach (DataGridViewCell cell in row.Cells)
+                        {
+                             int StockId = Convert.ToInt16(grdDataCart.Rows[grdDataCart.CurrentCell.RowIndex].Cells[1].Value.ToString());
+                             float price = float.Parse(grdDataCart.Rows[grdDataCart.CurrentCell.RowIndex].Cells[3].Value.ToString());
+                             int quantity = Convert.ToInt16(grdDataCart.Rows[grdDataCart.CurrentCell.RowIndex].Cells[4].Value.ToString());
+
+                        MessageBox.Show(""+OrderId+" "+ StockId + " " + price + " " + quantity);
+
+
+                        //command.CommandText =
+                                // "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + price + "," + quantity + ")";
+                            // command.ExecuteNonQuery(); //do operations with cell
+                         }
+                    }
+
+
+
+                
                     command.CommandText =
-                        "UPDATE Stock SET Amount = "+stockRemaining+"where StockId = "+StockId;
+                        "UPDATE Stock SET Amount = "+stockRemaining+"where StockId = 1";
                     command.ExecuteNonQuery();
 
 
