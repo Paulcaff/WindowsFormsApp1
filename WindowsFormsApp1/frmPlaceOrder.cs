@@ -118,7 +118,7 @@ namespace WindowsFormsApp1
                     {
                     this.grdDataCart.Rows.Add(OrderId, StockId, StockName, price, quantity, total);
 
-                    float balance = float.Parse(txtBalance.Text) + (price * Convert.ToInt16(quantity));
+                    float balance = float.Parse(txtBalance.Text) + (price * quantity);
                     txtBalance.Text = balance.ToString();
 
                     decimal StockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;

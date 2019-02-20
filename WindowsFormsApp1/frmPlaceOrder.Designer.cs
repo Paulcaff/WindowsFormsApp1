@@ -288,7 +288,7 @@ namespace WindowsFormsApp1
             this.grpSupplier.Controls.Add(this.label7);
             this.grpSupplier.Controls.Add(this.grdDataSupp);
             this.grpSupplier.Controls.Add(this.label1);
-            this.grpSupplier.Location = new System.Drawing.Point(0, 3);
+            this.grpSupplier.Location = new System.Drawing.Point(146, 0);
             this.grpSupplier.Name = "grpSupplier";
             this.grpSupplier.Size = new System.Drawing.Size(496, 188);
             this.grpSupplier.TabIndex = 15;
@@ -297,7 +297,6 @@ namespace WindowsFormsApp1
             // grpCart
             // 
             this.grpCart.Controls.Add(this.btnRemove);
-            this.grpCart.Controls.Add(this.grpSupplier);
             this.grpCart.Controls.Add(this.grdDataCart);
             this.grpCart.Controls.Add(this.label5);
             this.grpCart.Controls.Add(this.txtBalance);
@@ -314,6 +313,7 @@ namespace WindowsFormsApp1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 685);
             this.Controls.Add(this.grpCart);
+            this.Controls.Add(this.grpSupplier);
             this.Controls.Add(this.grpStockSelection);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
