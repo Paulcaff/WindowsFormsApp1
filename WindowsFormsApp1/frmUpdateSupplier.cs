@@ -165,6 +165,8 @@ namespace WindowsFormsApp1
                 
                 
                 txtSearch.Focus();
+
+                grdData.DataSource = null;
             }
 
         }

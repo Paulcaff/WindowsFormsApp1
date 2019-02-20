@@ -47,7 +47,7 @@ namespace WindowsFormsApp1
         private void grdData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtStockId.Text = grdData.SelectedRows[0].Cells[0].Value.ToString();
-            txtStockName.Text = grdData.SelectedRows[0].Cells[1].Value.ToString();
+            txtStockName.Text = grdData.SelectedRows[0].Cells[1].Value.ToString().ToUpper();
         }
 
 

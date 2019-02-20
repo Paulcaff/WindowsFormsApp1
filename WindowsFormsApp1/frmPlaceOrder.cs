@@ -82,33 +82,55 @@ namespace WindowsFormsApp1
 
         private void btnAddToCart_Click(object sender, EventArgs e)
         {
-
-            if (txtAmountOrder.Value <= Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()))
+            
+            if (txtAmountOrder.Value <= Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) && txtAmountOrder.Value > 0)
             {
-                if (true) { }
+                Boolean inserted = false;
+                
 
-
-                //add item to cart
+                int StockId = Convert.ToInt16(label7.Text);
+                int quantity = Convert.ToInt16(txtAmountOrder.Text);
                 int OrderId = Order.getNextOrderId();
-                int StockId = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[0].Value.ToString());
                 string StockName = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[1].Value.ToString();
                 float price = float.Parse(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[4].Value.ToString());
-                int quantity = Convert.ToInt16(txtAmountOrder.Text);
                 float total = price * quantity;
 
-                this.grdDataCart.Rows.Add(OrderId, StockId, StockName, price, quantity, total);
-                
-                float balance = float.Parse(txtBalance.Text) + (price * Convert.ToInt16(quantity));
-                txtBalance.Text = balance.ToString();
+               
+                for (int i = 0; i < grdDataCart.RowCount; i++)
+                {
+                    
+                    int present = Convert.ToInt16(grdDataCart.Rows[i].Cells[1].Value.ToString());
 
-                decimal StockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
-                grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value = StockRemaining;
+                    if (StockId == present)
+                    {
+                        grdDataCart.Rows[i].Cells[4].Value =Convert.ToInt16(grdDataCart.Rows[i].Cells[4].Value) + quantity ;
+                        grdDataCart.Rows[i].Cells[5].Value = Convert.ToInt16(grdDataCart.Rows[i].Cells[5].Value) +(price * quantity);
+                        float balance = Convert.ToInt16(txtBalance.Text) + (price * quantity);
+                        inserted = true;
+                        MessageBox.Show("Item Updated");
+                    }
 
+
+
+                }
+
+                if (!inserted) 
+                    {
+                    this.grdDataCart.Rows.Add(OrderId, StockId, StockName, price, quantity, total);
+
+                    float balance = float.Parse(txtBalance.Text) + (price * Convert.ToInt16(quantity));
+                    txtBalance.Text = balance.ToString();
+
+                    decimal StockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
+                    grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value = StockRemaining;
+
+                    MessageBox.Show("Item Ordered");
+                }
             }
 
             else
             {
-                MessageBox.Show("Not enough in stock to order");
+                MessageBox.Show("Not enough in stock to order or nothing been ordered");
             }
 
         }

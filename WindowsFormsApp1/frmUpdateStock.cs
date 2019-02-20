@@ -124,6 +124,8 @@ namespace WindowsFormsApp1
                 txtAmount.Clear();
                 txtPrice.Clear();
                 txtSupplier.Clear();
+
+                grdData.DataSource = null;
                 
                 
             }
