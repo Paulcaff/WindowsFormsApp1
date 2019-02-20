@@ -85,6 +85,7 @@ namespace WindowsFormsApp1
 
             if (txtAmountOrder.Value <= Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()))
             {
+                if (true) { }
 
 
                 //add item to cart
@@ -109,6 +110,7 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Not enough in stock to order");
             }
+
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
