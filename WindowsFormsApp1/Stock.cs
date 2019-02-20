@@ -169,7 +169,7 @@ namespace WindowsFormsApp1
             OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
             //define Sql Command
-            String strSQL = "Select * From Stock Where StockId = "+id+ " AND Status = 'A'";
+            String strSQL = "Select * From Stock Where SupplierId = "+id+ " AND Status = 'A'";
 
             //Execute Query
             OracleCommand cmd = new OracleCommand(strSQL, connect);

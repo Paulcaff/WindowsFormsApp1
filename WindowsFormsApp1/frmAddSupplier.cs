@@ -115,6 +115,19 @@ namespace WindowsFormsApp1
                 Supplier newSupplier = new Supplier(supplierId, name, add1, add2, town, county, email, phone, status,balance);
                 newSupplier.AddSupplier();
 
+                MessageBox.Show("You have added a new Supplier");
+
+                txtSupplierName.Clear();
+                txtAddressLine1.Clear();
+                txtAddressLine2.Clear();
+                txtTown.Clear();
+                txtCounty.Clear();
+                txtEmail.Clear();
+                txtPhone.Clear();
+
+                txtSupplierId.Text = Supplier.getNextSupplierId().ToString("00000");
+                txtSupplierName.Focus();
+
             }
 
             

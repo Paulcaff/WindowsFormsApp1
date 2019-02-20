@@ -39,8 +39,6 @@ namespace WindowsFormsApp1
 
         private void frmPlaceOrder_Load(object sender, EventArgs e)
         {
-
-            label6.Text = Order.getNextOrderId().ToString("0000");
             grpStockSelection.Hide();
             grpAddCart.Hide();
             btnRemove.Hide();
@@ -73,12 +71,12 @@ namespace WindowsFormsApp1
         private void grdDataStock_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             grpAddCart.Show();
+            grpSupplier.Hide();
+            grpCart.Show();
             label7.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[0].Value.ToString();
 
             txtPrice.Text = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[4].Value.ToString();
             float price = float.Parse(txtPrice.Text);
-
-
 
         }
 
@@ -89,28 +87,20 @@ namespace WindowsFormsApp1
             {
 
 
-
-
                 //add item to cart
-                int OrderId = Convert.ToInt16(label6.Text);
-                int StockId = Convert.ToInt16(grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[0].Value.ToString());
-                string StockName = grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[1].Value.ToString();
-                float price = float.Parse(grdDataStock.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[4].Value.ToString());
+                int OrderId = Order.getNextOrderId();
+                int StockId = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                string StockName = grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                float price = float.Parse(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[4].Value.ToString());
                 int quantity = Convert.ToInt16(txtAmountOrder.Text);
                 float total = price * quantity;
 
-
                 this.grdDataCart.Rows.Add(OrderId, StockId, StockName, price, quantity, total);
-
-
-
+                
                 float balance = float.Parse(txtBalance.Text) + (price * Convert.ToInt16(quantity));
                 txtBalance.Text = balance.ToString();
 
                 decimal StockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
-
-                MessageBox.Show("" + StockRemaining);
-
                 grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value = StockRemaining;
 
             }
@@ -136,32 +126,28 @@ namespace WindowsFormsApp1
 
 
         }
-        private void spareCode()
+
+
+        private void grdDataCart_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnRemove.Show();
+        }
 
-
-            /*
-
-            if (valid)
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+            if (grdDataCart.RowCount == 0)
             {
-
-                int OrderId = Convert.ToInt16(label6.Text);
-                int StockId = Convert.ToInt16(label7.Text);
-                float Price = float.Parse(txtPrice.Text);
-                int Quantity = Convert.ToInt16(txtAmountOrder.Text);
+                MessageBox.Show("There is nothing in the shopping Cart");
+            }
+            else
+            {
+                int OrderId = Order.getNextOrderId();
                 int SupplierId = Convert.ToInt16(label8.Text);
                 string Status = "A";
                 float total = float.Parse(txtBalance.Text);
 
                 DateTime dt = DateTime.Now;
                 string date = dt.ToString("dd-MMM-yyyy");
-
-                MessageBox.Show("" + date);
-
-
-
-
-
 
                 using (OracleConnection connection = new OracleConnection(DBConnect.oradb))
                 {
@@ -181,26 +167,57 @@ namespace WindowsFormsApp1
                     try
                     {
                         //microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=netframework-4.7.2
-                        MessageBox.Show("Here");
+
 
                         command.CommandText =
                             "Insert into Orders VALUES (" + OrderId + ",'" + date + "'," + SupplierId + "," + total + ",'" + Status + "')";
                         command.ExecuteNonQuery();
 
-                        MessageBox.Show("Here");
 
-                        command.CommandText =
-                             "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + Price + "," + Quantity + ")";
-                        command.ExecuteNonQuery();
 
-                        txtBalance.Text = total + (Quantity * Price).ToString();
+                        decimal stockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
 
-                        MessageBox.Show("Here");
+
+                        for (int i = 0; i < grdDataCart.RowCount; i++)
+                        {
+
+
+                            int StockId = Convert.ToInt16(grdDataCart.Rows[i].Cells[1].Value.ToString());
+                            float price = float.Parse(grdDataCart.Rows[i].Cells[3].Value.ToString());
+                            int quantity = Convert.ToInt16(grdDataCart.Rows[i].Cells[4].Value.ToString());
+
+                            MessageBox.Show("" + OrderId + " " + StockId + " " + price + " " + quantity);
+
+
+
+                            command.CommandText =
+                             "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + price + "," + quantity + ")";
+                            command.ExecuteNonQuery();
+
+                            command.CommandText =
+                             "UPDATE Stock SET Amount = " + stockRemaining + "where StockId = " + StockId;
+                            command.ExecuteNonQuery();
+
+                        }
+
+                        MessageBox.Show("Commit next");
 
                         // Attempt to commit the transaction.
                         transaction.Commit();
-                        Console.WriteLine("Both records are written to database.");
+
+                        txtAmountOrder.Value = 0;
+                        grdDataCart.Rows.Clear();
+                        txtPrice.Clear();
+                        txtBalance.Clear();
+
+                        grpCart.Hide();
+                        grpAddCart.Hide();
+                        grpStockSelection.Hide();
+                        grpSupplier.Show();
+                        grdDataSupp.Show();
+
                     }
+
 
                     catch (Exception ex)
                     {
@@ -221,142 +238,11 @@ namespace WindowsFormsApp1
                             Console.WriteLine("  Message: {0}", ex2.Message);
                         }
                     }
-              
+
                 }
-
-
-                /* //connect to the db
-                 OracleConnection connect = new OracleConnection(DBConnect.oradb);
-
-                 //define Sql Command
-                 String strSQL = "INSERT INTO OrderItems VALUES("+OrderId+","+StockId +","+ Price +","+ Quantity+")" ;
-                 MessageBox.Show("Here");
-
-                 //Execute Query
-                 OracleCommand cmd = new OracleCommand(strSQL, connect);
-
-
-
-                 connect.Open();
-
-             cmd.ExecuteNonQuery();
-
-
-
-
-                 //Close Db
-                 connect.Close();
-
-
-            txtAmountOrder.Clear();
-
-
-
-        }
-        */
-        }
-
-        private void grdDataCart_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            btnRemove.Show();
-        }
-
-        private void btnCheckout_Click(object sender, EventArgs e)
-        {
-
-            int OrderId = Convert.ToInt16(label6.Text);
-            int SupplierId = Convert.ToInt16(label8.Text);
-            string Status = "A";
-            float total = float.Parse(txtBalance.Text);
-
-            DateTime dt = DateTime.Now;
-            string date = dt.ToString("dd-MMM-yyyy");
-
-            using (OracleConnection connection = new OracleConnection(DBConnect.oradb))
-            {
-                connection.Open();
-
-                OracleCommand command = connection.CreateCommand();
-                OracleTransaction transaction;
-
-                // Start a local transaction.
-                transaction = connection.BeginTransaction();
-
-                // Must assign both transaction object and connection
-                // to Command object for a pending local transaction
-                command.Connection = connection;
-                command.Transaction = transaction;
-
-               // try
-               // {
-                    //microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=netframework-4.7.2
-                    MessageBox.Show("Here");
-
-                    command.CommandText =
-                        "Insert into Orders VALUES (" + OrderId + ",'" + date + "'," + SupplierId + "," + total + ",'" + Status + "')";
-                    command.ExecuteNonQuery();
-
-                    MessageBox.Show("Here");
-                    
-                    decimal stockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
-
-
-                     foreach (DataGridViewRow row in grdDataCart.Rows)
-                    {
-                         foreach (DataGridViewCell cell in row.Cells)
-                        {
-                             int StockId = Convert.ToInt16(grdDataCart.Rows[grdDataCart.CurrentCell.RowIndex].Cells[1].Value.ToString());
-                             float price = float.Parse(grdDataCart.Rows[grdDataCart.CurrentCell.RowIndex].Cells[3].Value.ToString());
-                             int quantity = Convert.ToInt16(grdDataCart.Rows[grdDataCart.CurrentCell.RowIndex].Cells[4].Value.ToString());
-
-                        MessageBox.Show(""+OrderId+" "+ StockId + " " + price + " " + quantity);
-
-
-                        //command.CommandText =
-                                // "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + price + "," + quantity + ")";
-                            // command.ExecuteNonQuery(); //do operations with cell
-                         }
-                    }
-
-
-
-                
-                    command.CommandText =
-                        "UPDATE Stock SET Amount = "+stockRemaining+"where StockId = 1";
-                    command.ExecuteNonQuery();
-
-
-
-                    MessageBox.Show("Here");
-
-                    // Attempt to commit the transaction.
-                    transaction.Commit();
-
-                /*}
-
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
-                    Console.WriteLine("  Message: {0}", ex.Message);
-
-                    // Attempt to roll back the transaction.
-                    try
-                    {
-                        transaction.Rollback();
-                    }
-                    catch (Exception ex2)
-                    {
-                        // This catch block will handle any errors that may have occurred
-                        // on the server that would cause the rollback to fail, such as
-                        // a closed connection.
-                        Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
-                        Console.WriteLine("  Message: {0}", ex2.Message);
-                    }
-                }*/
-
             }
-        }
 
+        }
     }
 }
 

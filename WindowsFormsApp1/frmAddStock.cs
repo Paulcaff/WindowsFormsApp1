@@ -38,10 +38,7 @@ namespace WindowsFormsApp1
             Application.Exit();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void btnAddStock_Click(object sender, EventArgs e)
         {
@@ -84,12 +81,18 @@ namespace WindowsFormsApp1
             Stock newStock = new Stock(StockId, name, description, amount, quantity, supplier, status);
             newStock.AddStock();
 
+                MessageBox.Show("You have added a new item of Stock");
+
                 txtStockId.Clear();
                 txtStockName.Clear();
                 txtDescription.Clear();
                 txtSupplier.Clear();
-                
-               
+                txtAmount.Value = 0;
+                txtPrice.Value = 0;
+
+                txtStockId.Text = Stock.getNextStockId().ToString("00000");
+                txtStockName.Focus();
+
 
             }
         }
