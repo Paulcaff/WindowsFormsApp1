@@ -72,7 +72,7 @@ namespace WindowsFormsApp1
             this.mnuExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(633, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(999, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -221,7 +221,7 @@ namespace WindowsFormsApp1
             this.grdDataCart.AllowUserToAddRows = false;
             this.grdDataCart.AllowUserToDeleteRows = false;
             this.grdDataCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdDataCart.Location = new System.Drawing.Point(52, 11);
+            this.grdDataCart.Location = new System.Drawing.Point(31, 14);
             this.grdDataCart.Name = "grdDataCart";
             this.grdDataCart.ReadOnly = true;
             this.grdDataCart.Size = new System.Drawing.Size(392, 150);
@@ -288,7 +288,7 @@ namespace WindowsFormsApp1
             this.grpSupplier.Controls.Add(this.label7);
             this.grpSupplier.Controls.Add(this.grdDataSupp);
             this.grpSupplier.Controls.Add(this.label1);
-            this.grpSupplier.Location = new System.Drawing.Point(146, 0);
+            this.grpSupplier.Location = new System.Drawing.Point(12, 27);
             this.grpSupplier.Name = "grpSupplier";
             this.grpSupplier.Size = new System.Drawing.Size(496, 188);
             this.grpSupplier.TabIndex = 15;
@@ -301,9 +301,9 @@ namespace WindowsFormsApp1
             this.grpCart.Controls.Add(this.label5);
             this.grpCart.Controls.Add(this.txtBalance);
             this.grpCart.Controls.Add(this.label6);
-            this.grpCart.Location = new System.Drawing.Point(12, 27);
+            this.grpCart.Location = new System.Drawing.Point(513, 247);
             this.grpCart.Name = "grpCart";
-            this.grpCart.Size = new System.Drawing.Size(485, 208);
+            this.grpCart.Size = new System.Drawing.Size(473, 208);
             this.grpCart.TabIndex = 18;
             this.grpCart.TabStop = false;
             // 
@@ -311,7 +311,7 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 685);
+            this.ClientSize = new System.Drawing.Size(999, 685);
             this.Controls.Add(this.grpCart);
             this.Controls.Add(this.grpSupplier);
             this.Controls.Add(this.grpStockSelection);
