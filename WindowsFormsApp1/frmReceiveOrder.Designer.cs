@@ -32,8 +32,6 @@
             this.mnuBack = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnReceived = new System.Windows.Forms.Button();
-            this.btnNotReceived = new System.Windows.Forms.Button();
             this.btnReceiveOrder = new System.Windows.Forms.Button();
             this.grdDataSuppliers = new System.Windows.Forms.DataGridView();
             this.grdDataOrder = new System.Windows.Forms.DataGridView();
@@ -74,37 +72,20 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 396);
+            this.label1.Location = new System.Drawing.Point(554, 516);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 16);
             this.label1.TabIndex = 2;
             // 
-            // btnReceived
-            // 
-            this.btnReceived.Location = new System.Drawing.Point(49, 493);
-            this.btnReceived.Name = "btnReceived";
-            this.btnReceived.Size = new System.Drawing.Size(62, 23);
-            this.btnReceived.TabIndex = 4;
-            this.btnReceived.Text = "Received";
-            this.btnReceived.UseVisualStyleBackColor = true;
-            // 
-            // btnNotReceived
-            // 
-            this.btnNotReceived.Location = new System.Drawing.Point(436, 485);
-            this.btnNotReceived.Name = "btnNotReceived";
-            this.btnNotReceived.Size = new System.Drawing.Size(83, 23);
-            this.btnNotReceived.TabIndex = 5;
-            this.btnNotReceived.Text = "Not Received";
-            this.btnNotReceived.UseVisualStyleBackColor = true;
-            // 
             // btnReceiveOrder
             // 
-            this.btnReceiveOrder.Location = new System.Drawing.Point(175, 485);
+            this.btnReceiveOrder.Location = new System.Drawing.Point(65, 441);
             this.btnReceiveOrder.Name = "btnReceiveOrder";
             this.btnReceiveOrder.Size = new System.Drawing.Size(194, 38);
             this.btnReceiveOrder.TabIndex = 6;
             this.btnReceiveOrder.Text = "Update Files";
             this.btnReceiveOrder.UseVisualStyleBackColor = true;
+            this.btnReceiveOrder.Click += new System.EventHandler(this.btnReceiveOrder_Click);
             // 
             // grdDataSuppliers
             // 
@@ -120,29 +101,34 @@
             // 
             // grdDataOrder
             // 
+            this.grdDataOrder.AllowUserToAddRows = false;
+            this.grdDataOrder.AllowUserToDeleteRows = false;
             this.grdDataOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDataOrder.Location = new System.Drawing.Point(65, 143);
             this.grdDataOrder.Name = "grdDataOrder";
+            this.grdDataOrder.ReadOnly = true;
             this.grdDataOrder.Size = new System.Drawing.Size(415, 80);
             this.grdDataOrder.TabIndex = 8;
             this.grdDataOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDataOrder_CellClick);
             // 
             // grdDataReceive
             // 
+            this.grdDataReceive.AllowUserToAddRows = false;
+            this.grdDataReceive.AllowUserToDeleteRows = false;
             this.grdDataReceive.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDataReceive.Location = new System.Drawing.Point(65, 243);
             this.grdDataReceive.Name = "grdDataReceive";
-            this.grdDataReceive.Size = new System.Drawing.Size(389, 150);
+            this.grdDataReceive.ReadOnly = true;
+            this.grdDataReceive.Size = new System.Drawing.Size(304, 150);
             this.grdDataReceive.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 368);
+            this.label2.Location = new System.Drawing.Point(554, 488);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "label2";
             // 
             // frmReceiveOrder
             // 
@@ -154,8 +140,6 @@
             this.Controls.Add(this.grdDataOrder);
             this.Controls.Add(this.grdDataSuppliers);
             this.Controls.Add(this.btnReceiveOrder);
-            this.Controls.Add(this.btnNotReceived);
-            this.Controls.Add(this.btnReceived);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -178,8 +162,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBack;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnReceived;
-        private System.Windows.Forms.Button btnNotReceived;
         private System.Windows.Forms.Button btnReceiveOrder;
         private System.Windows.Forms.DataGridView grdDataSuppliers;
         private System.Windows.Forms.DataGridView grdDataOrder;
