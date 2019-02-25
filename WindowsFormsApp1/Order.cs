@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,6 +110,32 @@ namespace WindowsFormsApp1
             connect.Close();
 
             return nextOrderId;
+        }
+
+        public static DataSet getOrders(DataSet ds, int id)
+        {
+
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+            String strSQL = "Select * From Orders Where SupplierId = " + id + " AND Status = 'A'";
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            //create oracle adapter
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            //Fill The Dataset with query result;
+            da.Fill(ds, "stk");
+
+            //Close Db
+            connect.Close();
+
+
+            //return Query Result
+            return ds;
         }
 
 

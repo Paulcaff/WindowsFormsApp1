@@ -86,11 +86,11 @@ namespace WindowsFormsApp1
         {
             grpCart.Show();
             grdDataCart.Show();
-            
-            if (txtAmountOrder.Value <= Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) && txtAmountOrder.Value > 0)
+
+            if (txtAmountOrder.Value > 0)
             {
                 Boolean inserted = false;
-                
+
 
                 int StockId = Convert.ToInt16(label7.Text);
                 int quantity = Convert.ToInt16(txtAmountOrder.Text);
@@ -99,21 +99,20 @@ namespace WindowsFormsApp1
                 float price = float.Parse(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[4].Value.ToString());
                 float total = price * quantity;
 
-               
+
                 for (int i = 0; i < grdDataCart.RowCount; i++)
                 {
-                    
+
                     int present = Convert.ToInt16(grdDataCart.Rows[i].Cells[1].Value.ToString());
 
                     if (StockId == present)
                     {
-                        grdDataCart.Rows[i].Cells[4].Value =Convert.ToInt16(grdDataCart.Rows[i].Cells[4].Value) + quantity ;
-                        grdDataCart.Rows[i].Cells[5].Value = Convert.ToInt16(grdDataCart.Rows[i].Cells[5].Value) +(price * quantity);
+                        grdDataCart.Rows[i].Cells[4].Value = Convert.ToInt16(grdDataCart.Rows[i].Cells[4].Value) + quantity;
+                        grdDataCart.Rows[i].Cells[5].Value = Convert.ToInt16(grdDataCart.Rows[i].Cells[5].Value) + (price * quantity);
                         float balance = float.Parse(txtBalance.Text) + (price * quantity);
                         txtBalance.Text = balance.ToString();
 
-                        decimal StockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
-                        grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value = StockRemaining;
+
                         inserted = true;
                         MessageBox.Show("Item Updated");
                     }
@@ -122,16 +121,12 @@ namespace WindowsFormsApp1
 
                 }
 
-                if (!inserted) 
-                    {
+                if (!inserted)
+                {
                     this.grdDataCart.Rows.Add(OrderId, StockId, StockName, price, quantity, total);
 
                     float balance = float.Parse(txtBalance.Text) + (price * quantity);
                     txtBalance.Text = balance.ToString();
-
-                    decimal StockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
-                    grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value = StockRemaining;
-
                     MessageBox.Show("Item Ordered");
                 }
             }
@@ -152,12 +147,6 @@ namespace WindowsFormsApp1
 
             float balance = float.Parse(txtBalance.Text) - (productTotal);
             txtBalance.Text = balance.ToString();
-
-            float originalStock = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) + deduction;
-            MessageBox.Show("" + originalStock);
-
-            grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value = originalStock;
-
 
         }
 
@@ -199,8 +188,8 @@ namespace WindowsFormsApp1
                     command.Connection = connection;
                     command.Transaction = transaction;
 
-                   // try
-                   // {
+                    try
+                    {
                         //microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=netframework-4.7.2
 
 
@@ -212,7 +201,7 @@ namespace WindowsFormsApp1
                         float currentBalance = float.Parse(grdDataSupp.Rows[grdDataSupp.CurrentCell.RowIndex].Cells[2].Value.ToString());
                         float newBalance = currentBalance + total;
 
-                        decimal stockRemaining = Convert.ToInt16(grdDataStock.Rows[grdDataStock.CurrentCell.RowIndex].Cells[3].Value.ToString()) - txtAmountOrder.Value;
+
 
 
                         for (int i = 0; i < grdDataCart.RowCount; i++)
@@ -222,7 +211,7 @@ namespace WindowsFormsApp1
                             int StockId = Convert.ToInt16(grdDataCart.Rows[i].Cells[1].Value.ToString());
                             float price = float.Parse(grdDataCart.Rows[i].Cells[3].Value.ToString());
                             int quantity = Convert.ToInt16(grdDataCart.Rows[i].Cells[4].Value.ToString());
-                            
+
 
                             MessageBox.Show("" + OrderId + " " + StockId + " " + price + " " + quantity);
 
@@ -232,14 +221,11 @@ namespace WindowsFormsApp1
                              "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + price + "," + quantity + ")";
                             command.ExecuteNonQuery();
 
-                            command.CommandText =
-                             "UPDATE Stock SET Amount = " + stockRemaining + "where StockId = " + StockId;
-                            command.ExecuteNonQuery();
 
                         }
 
                         command.CommandText =
-                            "UPDATE Supplier SET Balance = "+ newBalance+ "where SupplierId = "+SupplierId ;
+                            "UPDATE Supplier SET Balance = " + newBalance + "where SupplierId = " + SupplierId;
                         command.ExecuteNonQuery();
 
                         MessageBox.Show("Commit next");
@@ -257,18 +243,18 @@ namespace WindowsFormsApp1
                         grpAddCart.Hide();
                         grpStockSelection.Hide();
 
-                         DataSet ds = new DataSet();
+                        DataSet ds = new DataSet();
                         grdDataSupp.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
 
-                    grpSupplier.Show();
-                    
-
-                        
-
-                    //}
+                        grpSupplier.Show();
 
 
-                   /* catch (Exception ex)
+
+
+                    }
+
+
+                    catch (Exception ex)
                     {
                         Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
                         Console.WriteLine("  Message: {0}", ex.Message);
@@ -286,12 +272,14 @@ namespace WindowsFormsApp1
                             Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
                             Console.WriteLine("  Message: {0}", ex2.Message);
                         }
-                    }*/
+                    }
 
                 }
             }
-
+            
         }
+
+        
     }
 }
 

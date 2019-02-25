@@ -34,5 +34,37 @@ namespace WindowsFormsApp1
         {
             Application.Exit();
         }
+
+        private void frmReceiveOrder_Load(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
+
+           // grdDataReceive.Columns.Add("StockID", "StockId");
+           // grdDataReceive.Columns.Add("StockName", "Stock Name");
+            //grdDataReceive.Columns.Add("Amount", "Amount");
+
+        }
+
+        private void grdDataSuppliers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            label1.Text = grdDataSuppliers.Rows[grdDataSuppliers.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            int id = Convert.ToInt16(label1.Text);
+
+            DataSet ds = new DataSet();
+            grdDataOrder.DataSource = Order.getOrders(ds, id).Tables["stk"];
+        }
+
+        private void grdDataOrder_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+             label2.Text = grdDataOrder.Rows[grdDataOrder.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            int id = Convert.ToInt16(label2.Text);
+
+            DataSet ds = new DataSet();
+            MessageBox.Show("" + ds);
+            grdDataReceive.DataSource = OrderItems.getOrderItems(ds, id).Tables["stk"];
+
+        }
     }
 }
