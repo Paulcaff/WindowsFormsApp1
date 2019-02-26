@@ -104,29 +104,38 @@ namespace WindowsFormsApp1
                         
                             int amount = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString());
                             int id = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[0].Value.ToString());
-                            
+                            int received = Convert.ToInt16(txtReceived.Text);
 
-                            command.CommandText =
-                             "UPDATE STOCK SET AMOUNT = (AMOUNT +"+amount+"),STATUS = 'R' WHERE STOCKID = "+id;
-                            command.ExecuteNonQuery();
+                    if (amount == received)
+                    {
+                        command.CommandText =
+                         "UPDATE STOCK SET AMOUNT = (AMOUNT +" + amount + "),STATUS = 'R' WHERE STOCKID = " + id;
+                        command.ExecuteNonQuery();
 
 
-                        
 
-                        //command.CommandText =
-                           // "UPDATE Orders SET Status = 'R' where OrderId = "+orderId;
-                       // command.ExecuteNonQuery();
+
+                        command.CommandText =
+                         "UPDATE Orders SET Status = 'R' where OrderId = "+orderId;
+                         command.ExecuteNonQuery();
 
                         MessageBox.Show("Commit next");
 
                         // Attempt to commit the transaction.
                         transaction.Commit();
-                        //grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
+                        grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email sent to supplier with a request for rest of stock");
+                        grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
 
-
+                    }
 
                     DataSet ds = new DataSet();
                         grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
+
+                    grdDataOrder.DataSource = null;
 
                         
 
