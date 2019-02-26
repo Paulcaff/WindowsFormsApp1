@@ -166,7 +166,7 @@ namespace WindowsFormsApp1
             {
                 int OrderId = Order.getNextOrderId();
                 int SupplierId = Convert.ToInt16(label8.Text);
-                string Status = "A";
+                string Status = "O";
                 float total = float.Parse(txtBalance.Text);
                 //float OriginalBalance = float.Parse(grdDataSupp.Rows[grdDataStock.CurrentCell.RowIndex].Cells[2].Value);
 

@@ -97,6 +97,32 @@ namespace WindowsFormsApp1
             return ds;
         }
 
+        public static DataSet getCancelItems(DataSet ds, int id)
+        {
+
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+            String strSQL = "SELECT ORDERITEMS.STOCKID,STOCK.STOCKNAME,ORDERITEMS.QUANTITY,ORDERITEMS.STATUS FROM ORDERITEMS INNER JOIN STOCK ON ORDERITEMS.STOCKID = STOCK.STOCKID WHERE ORDERID =" + id;
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            //create oracle adapter
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            //Fill The Dataset with query result;
+            da.Fill(ds, "stk");
+
+            //Close Db
+            connect.Close();
+
+
+            //return Query Result
+            return ds;
+        }
+
 
     }
 }
