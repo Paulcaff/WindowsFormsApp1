@@ -40,11 +40,7 @@ namespace WindowsFormsApp1
         {
             DataSet ds = new DataSet();
             grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
-
-           // grdDataReceive.Columns.Add("StockID", "StockId");
-           // grdDataReceive.Columns.Add("StockName", "Stock Name");
-            //grdDataReceive.Columns.Add("Amount", "Amount");
-
+                       
         }
 
         private void grdDataSuppliers_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -59,13 +55,18 @@ namespace WindowsFormsApp1
         private void grdDataOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-             label2.Text = grdDataOrder.Rows[grdDataOrder.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            label2.Text = grdDataOrder.Rows[grdDataOrder.CurrentCell.RowIndex].Cells[0].Value.ToString();
             int id = Convert.ToInt16(label2.Text);
 
             DataSet ds = new DataSet();
-            MessageBox.Show("" + ds);
+           
             grdDataReceive.DataSource = OrderItems.getOrderItems(ds, id).Tables["stk"];
 
+        }
+
+        private void grdDataReceive_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtOrdered.Text = grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString();
         }
 
         private void btnReceiveOrder_Click(object sender, EventArgs e)
@@ -100,33 +101,31 @@ namespace WindowsFormsApp1
                    // {
                         //microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=netframework-4.7.2
                                                
-                        for (int i = 0; i < grdDataReceive.RowCount; i++)
-                        {
-
-
-                            int amount = Convert.ToInt16(grdDataReceive.Rows[i].Cells[2].Value.ToString());
-                            int id = Convert.ToInt16(grdDataReceive.Rows[i].Cells[0].Value.ToString());
+                        
+                            int amount = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString());
+                            int id = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[0].Value.ToString());
                             
 
                             command.CommandText =
-                             "UPDATE STOCK SET AMOUNT = (AMOUNT +"+amount+") WHERE STOCKID = "+id;
+                             "UPDATE STOCK SET AMOUNT = (AMOUNT +"+amount+"),STATUS = 'R' WHERE STOCKID = "+id;
                             command.ExecuteNonQuery();
 
 
-                        }
+                        
 
-                        command.CommandText =
-                            "UPDATE Orders SET Status = 'R' where OrderId = "+orderId;
-                        command.ExecuteNonQuery();
+                        //command.CommandText =
+                           // "UPDATE Orders SET Status = 'R' where OrderId = "+orderId;
+                       // command.ExecuteNonQuery();
 
                         MessageBox.Show("Commit next");
 
                         // Attempt to commit the transaction.
                         transaction.Commit();
+                        //grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
 
-                       
 
-                        DataSet ds = new DataSet();
+
+                    DataSet ds = new DataSet();
                         grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
 
                         
@@ -163,5 +162,7 @@ namespace WindowsFormsApp1
         
 
     }
+
+        
     }
 }

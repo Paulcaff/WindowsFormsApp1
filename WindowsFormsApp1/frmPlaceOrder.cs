@@ -218,7 +218,7 @@ namespace WindowsFormsApp1
 
 
                             command.CommandText =
-                             "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + price + "," + quantity + ")";
+                             "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + price + "," + quantity + ",'O')";
                             command.ExecuteNonQuery();
 
 

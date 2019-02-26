@@ -37,10 +37,15 @@
             this.grdDataOrder = new System.Windows.Forms.DataGridView();
             this.grdDataReceive = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtReceived = new System.Windows.Forms.NumericUpDown();
+            this.txtOrdered = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDataSuppliers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDataOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDataReceive)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReceived)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -79,7 +84,7 @@
             // 
             // btnReceiveOrder
             // 
-            this.btnReceiveOrder.Location = new System.Drawing.Point(65, 441);
+            this.btnReceiveOrder.Location = new System.Drawing.Point(153, 485);
             this.btnReceiveOrder.Name = "btnReceiveOrder";
             this.btnReceiveOrder.Size = new System.Drawing.Size(194, 38);
             this.btnReceiveOrder.TabIndex = 6;
@@ -121,6 +126,7 @@
             this.grdDataReceive.ReadOnly = true;
             this.grdDataReceive.Size = new System.Drawing.Size(304, 150);
             this.grdDataReceive.TabIndex = 9;
+            this.grdDataReceive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDataReceive_CellClick);
             // 
             // label2
             // 
@@ -130,11 +136,50 @@
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 10;
             // 
+            // txtReceived
+            // 
+            this.txtReceived.Location = new System.Drawing.Point(200, 444);
+            this.txtReceived.Name = "txtReceived";
+            this.txtReceived.Size = new System.Drawing.Size(90, 20);
+            this.txtReceived.TabIndex = 11;
+            this.txtReceived.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtOrdered
+            // 
+            this.txtOrdered.Enabled = false;
+            this.txtOrdered.Location = new System.Drawing.Point(200, 408);
+            this.txtOrdered.Name = "txtOrdered";
+            this.txtOrdered.Size = new System.Drawing.Size(90, 20);
+            this.txtOrdered.TabIndex = 12;
+            this.txtOrdered.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(101, 408);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Amount Ordered";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(101, 446);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Amount Reeived";
+            // 
             // frmReceiveOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 535);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtOrdered);
+            this.Controls.Add(this.txtReceived);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.grdDataReceive);
             this.Controls.Add(this.grdDataOrder);
@@ -151,6 +196,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdDataSuppliers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDataOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDataReceive)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReceived)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,5 +213,9 @@
         private System.Windows.Forms.DataGridView grdDataOrder;
         private System.Windows.Forms.DataGridView grdDataReceive;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown txtReceived;
+        private System.Windows.Forms.TextBox txtOrdered;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

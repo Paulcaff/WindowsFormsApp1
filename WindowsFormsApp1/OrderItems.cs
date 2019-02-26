@@ -78,8 +78,8 @@ namespace WindowsFormsApp1
             OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
             //define Sql Command
-            String strSQL = "SELECT ORDERITEMS.STOCKID,STOCK.STOCKNAME,ORDERITEMS.QUANTITY FROM ORDERITEMS INNER JOIN STOCK ON ORDERITEMS.STOCKID = STOCK.STOCKID WHERE ORDERID ="+id;
-
+             String strSQL = "SELECT ORDERITEMS.STOCKID,STOCK.STOCKNAME,ORDERITEMS.QUANTITY,ORDERITEMS.STATUS FROM ORDERITEMS INNER JOIN STOCK ON ORDERITEMS.STOCKID = STOCK.STOCKID WHERE ORDERITEMS.STATUS='O' AND ORDERID ="+id;
+            
             //Execute Query
             OracleCommand cmd = new OracleCommand(strSQL, connect);
 
