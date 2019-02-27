@@ -67,7 +67,8 @@ namespace WindowsFormsApp1
         private void grdDataReceive_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtOrdered.Text = grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString();
-            txtReceived.Text = grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString();
+            int value = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString()) - Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[4].Value.ToString());
+            txtReceived.Text = value.ToString();
         }
 
         private void btnReceiveOrder_Click(object sender, EventArgs e)
@@ -98,66 +99,71 @@ namespace WindowsFormsApp1
                     command.Connection = connection;
                     command.Transaction = transaction;
 
-                   // try
-                   // {
+                    try
+                    {
                         //microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=netframework-4.7.2
                                                
                         
                             int amount = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString());
                             int id = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[0].Value.ToString());
-                            int received = Convert.ToInt16(txtReceived.Text);
+                            int receivedNow = Convert.ToInt16(txtReceived.Text);
                             int orderid = Convert.ToInt16(grdDataOrder.Rows[grdDataOrder.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                            int alreadyReceived = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[4].Value.ToString());
 
-                    if (amount == received)
-                    {
-                        command.CommandText =
-                         "UPDATE STOCK SET AMOUNT = (AMOUNT +" + amount + ") WHERE STOCKID = " + id;
-                        command.ExecuteNonQuery();
+                        if ((receivedNow + alreadyReceived) <= amount)
+                        {
+
+                            if (amount == receivedNow + alreadyReceived)
+                            {
+                                command.CommandText =
+                                 "UPDATE STOCK SET AMOUNT = (AMOUNT +" + amount + ") WHERE STOCKID = " + id;
+                                command.ExecuteNonQuery();
+
+                                command.CommandText =
+                                 "UPDATE OrderItems SET ReceivedStock = (ReceivedStock +" + receivedNow + "),STATUS = 'R' where StockId = " + id;
+                                command.ExecuteNonQuery();
+
+                                grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
+                            }
+                            else
+                            {
+                                command.CommandText =
+                                 "UPDATE STOCK SET AMOUNT = (AMOUNT +" + amount + ") WHERE STOCKID = " + id;
+                                command.ExecuteNonQuery();
+
+                                command.CommandText =
+                                 "UPDATE OrderItems SET ReceivedStock = (ReceivedStock +" + receivedNow + ") where StockId = " + id;
+                                command.ExecuteNonQuery();
+
+                                grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
+                            }
+
+
+
+                            transaction.Commit();
+
+                            Order.getOrderStatus(orderid);
+
+                            DataSet ds = new DataSet();
+                            grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
+
+                            grdDataOrder.Hide();
+
+                            
+
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("you cant receive more stock than you ordered");
+                        }
+
                         
-                        command.CommandText =
-                         "UPDATE OrderItems SET ReceivedStock = (ReceivedStock +"+received+ "),STATUS = 'R' where StockId = " + id;
-                         command.ExecuteNonQuery();
-                          
-                        grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
-                    }
-                    else
-                    {
-                        command.CommandText =
-                         "UPDATE STOCK SET AMOUNT = (AMOUNT +" + amount + ") WHERE STOCKID = " + id;
-                        command.ExecuteNonQuery();
 
-                        command.CommandText =
-                         "UPDATE OrderItems SET ReceivedStock = (ReceivedStock +" + received + ") where StockId = " + id;
-                        command.ExecuteNonQuery();
-
-                        grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
-                    }
-                    
-
-                    if(Order.getOrderStatus(orderid)== 0)
-                    {
-
-                        command.CommandText =
-                         "UPDATE ORDERS SET Status = 'R'";
-                        command.ExecuteNonQuery();
 
 
 
                     }
-
-
-                    transaction.Commit();
-                    DataSet ds = new DataSet();
-                        grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
-
-                    grdDataOrder.DataSource = null;
-
-                        
-
-
-
-
-                    /*}
 
 
                     catch (Exception ex)
@@ -178,7 +184,7 @@ namespace WindowsFormsApp1
                             Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
                             Console.WriteLine("  Message: {0}", ex2.Message);
                         }
-                    }*/
+                    }
 
                 }
             }

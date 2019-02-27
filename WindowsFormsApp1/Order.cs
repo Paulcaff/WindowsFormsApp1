@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -165,16 +166,17 @@ namespace WindowsFormsApp1
         }
 
 
-        public static int getOrderStatus(int orderid)
+        public static void getOrderStatus(int orderid)
         {
-            int resultsReturned;
+            MessageBox.Show("aaa" + orderid);
+            
             //Connect to DB
             OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
             connect.Open();
 
             //define Sql Command
-            String strSQL = "SELECT * from OrderItems where Status = 'O' and ORDERID = "+orderid;
+            String strSQL = "SELECT Count(*) from OrderItems where Status = 'O' and ORDERID = "+orderid;
 
             //Execute Query
             OracleCommand cmd = new OracleCommand(strSQL, connect);
@@ -183,14 +185,45 @@ namespace WindowsFormsApp1
 
             dr.Read();
 
-            if (dr.IsDBNull(0))
-                resultsReturned = 0;
-            else
-                resultsReturned = 1; 
+
+            if (Convert.ToInt16(dr.GetValue(0))==0)
+            {
+                orderFullyReceived(orderid);
+                
+               
+
+            }
+            else {
+                MessageBox.Show("OOOOOO");
+            }
+
+           
 
             connect.Close();
 
-            return resultsReturned;
+            
+        }
+
+        private static void orderFullyReceived(int orderid)
+        {
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+             String strSQL = "UPDATE ORDERS SET STATUS = 'R' WHERE ORDERID ="+orderid;
+
+            
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            connect.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connect.Close();
+
+
         }
 
 

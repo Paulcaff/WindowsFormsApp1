@@ -142,6 +142,11 @@ namespace WindowsFormsApp1
             DataSet ds = new DataSet();
 
             grdData.DataSource = Stock.getAllStock(ds).Tables["stk"];
-        }                                        
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Order.getOrderStatus(11);
+        }
     }
 }
