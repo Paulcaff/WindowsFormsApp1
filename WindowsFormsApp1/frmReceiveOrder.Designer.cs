@@ -172,9 +172,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(101, 446);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.Size = new System.Drawing.Size(92, 13);
             this.label4.TabIndex = 14;
-            this.label4.Text = "Amount Reeived";
+            this.label4.Text = "Amount Received";
             // 
             // frmReceiveOrder
             // 

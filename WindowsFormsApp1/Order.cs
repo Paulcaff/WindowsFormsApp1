@@ -165,6 +165,35 @@ namespace WindowsFormsApp1
         }
 
 
+        public static int getOrderStatus(int orderid)
+        {
+            int resultsReturned;
+            //Connect to DB
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            connect.Open();
+
+            //define Sql Command
+            String strSQL = "SELECT * from OrderItems where Status = 'O' and ORDERID = "+orderid;
+
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            dr.Read();
+
+            if (dr.IsDBNull(0))
+                resultsReturned = 0;
+            else
+                resultsReturned = 1; 
+
+            connect.Close();
+
+            return resultsReturned;
+        }
+
+
 
 
 

@@ -67,6 +67,7 @@ namespace WindowsFormsApp1
         private void grdDataReceive_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtOrdered.Text = grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString();
+            txtReceived.Text = grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString();
         }
 
         private void btnReceiveOrder_Click(object sender, EventArgs e)
@@ -105,33 +106,47 @@ namespace WindowsFormsApp1
                             int amount = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[2].Value.ToString());
                             int id = Convert.ToInt16(grdDataReceive.Rows[grdDataReceive.CurrentCell.RowIndex].Cells[0].Value.ToString());
                             int received = Convert.ToInt16(txtReceived.Text);
+                            int orderid = Convert.ToInt16(grdDataOrder.Rows[grdDataOrder.CurrentCell.RowIndex].Cells[0].Value.ToString());
 
                     if (amount == received)
                     {
                         command.CommandText =
-                         "UPDATE STOCK SET AMOUNT = (AMOUNT +" + amount + "),STATUS = 'R' WHERE STOCKID = " + id;
+                         "UPDATE STOCK SET AMOUNT = (AMOUNT +" + amount + ") WHERE STOCKID = " + id;
                         command.ExecuteNonQuery();
-
-
-
-
+                        
                         command.CommandText =
-                         "UPDATE Orders SET Status = 'R' where OrderId = "+orderId;
+                         "UPDATE OrderItems SET ReceivedStock = (ReceivedStock +"+received+ "),STATUS = 'R' where StockId = " + id;
                          command.ExecuteNonQuery();
-
-                        MessageBox.Show("Commit next");
-
-                        // Attempt to commit the transaction.
-                        transaction.Commit();
+                          
                         grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
                     }
                     else
                     {
-                        MessageBox.Show("Email sent to supplier with a request for rest of stock");
+                        command.CommandText =
+                         "UPDATE STOCK SET AMOUNT = (AMOUNT +" + amount + ") WHERE STOCKID = " + id;
+                        command.ExecuteNonQuery();
+
+                        command.CommandText =
+                         "UPDATE OrderItems SET ReceivedStock = (ReceivedStock +" + received + ") where StockId = " + id;
+                        command.ExecuteNonQuery();
+
                         grdDataReceive.Rows.RemoveAt(grdDataReceive.CurrentRow.Index);
+                    }
+                    
+
+                    if(Order.getOrderStatus(orderid)== 0)
+                    {
+
+                        command.CommandText =
+                         "UPDATE ORDERS SET Status = 'R'";
+                        command.ExecuteNonQuery();
+
+
 
                     }
 
+
+                    transaction.Commit();
                     DataSet ds = new DataSet();
                         grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
 
