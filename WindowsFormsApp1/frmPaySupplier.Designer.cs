@@ -95,6 +95,7 @@
             // txtAmountToPay
             // 
             this.txtAmountToPay.Location = new System.Drawing.Point(230, 112);
+            this.txtAmountToPay.MaxLength = 6;
             this.txtAmountToPay.Name = "txtAmountToPay";
             this.txtAmountToPay.Size = new System.Drawing.Size(158, 20);
             this.txtAmountToPay.TabIndex = 5;

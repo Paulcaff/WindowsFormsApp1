@@ -122,26 +122,26 @@
             // txtStockName
             // 
             this.txtStockName.Location = new System.Drawing.Point(132, 67);
+            this.txtStockName.MaxLength = 20;
             this.txtStockName.Name = "txtStockName";
             this.txtStockName.Size = new System.Drawing.Size(174, 20);
             this.txtStockName.TabIndex = 8;
-           
             // 
             // txtDescription
             // 
             this.txtDescription.Location = new System.Drawing.Point(132, 110);
+            this.txtDescription.MaxLength = 25;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(174, 20);
             this.txtDescription.TabIndex = 9;
-            
             // 
             // txtSupplier
             // 
             this.txtSupplier.Location = new System.Drawing.Point(132, 244);
+            this.txtSupplier.MaxLength = 4;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(170, 20);
             this.txtSupplier.TabIndex = 12;
-           
             // 
             // btnAddStock
             // 
@@ -156,6 +156,11 @@
             // txtAmount
             // 
             this.txtAmount.Location = new System.Drawing.Point(132, 160);
+            this.txtAmount.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(174, 20);
             this.txtAmount.TabIndex = 14;
@@ -163,6 +168,11 @@
             // txtPrice
             // 
             this.txtPrice.Location = new System.Drawing.Point(132, 206);
+            this.txtPrice.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            131072});
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(120, 20);
             this.txtPrice.TabIndex = 15;
@@ -180,6 +190,7 @@
             // 
             this.txtStockId.Enabled = false;
             this.txtStockId.Location = new System.Drawing.Point(132, 32);
+            this.txtStockId.MaxLength = 4;
             this.txtStockId.Name = "txtStockId";
             this.txtStockId.Size = new System.Drawing.Size(174, 20);
             this.txtStockId.TabIndex = 17;

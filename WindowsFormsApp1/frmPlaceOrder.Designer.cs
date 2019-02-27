@@ -141,6 +141,11 @@ namespace WindowsFormsApp1
             // txtAmountOrder
             // 
             this.txtAmountOrder.Location = new System.Drawing.Point(102, 34);
+            this.txtAmountOrder.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.txtAmountOrder.Name = "txtAmountOrder";
             this.txtAmountOrder.Size = new System.Drawing.Size(62, 20);
             this.txtAmountOrder.TabIndex = 15;

@@ -126,6 +126,7 @@
             // txtStockName
             // 
             this.txtStockName.Location = new System.Drawing.Point(177, 60);
+            this.txtStockName.MaxLength = 20;
             this.txtStockName.Name = "txtStockName";
             this.txtStockName.Size = new System.Drawing.Size(182, 20);
             this.txtStockName.TabIndex = 6;
@@ -133,6 +134,7 @@
             // txtDescription
             // 
             this.txtDescription.Location = new System.Drawing.Point(176, 95);
+            this.txtDescription.MaxLength = 25;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(183, 20);
             this.txtDescription.TabIndex = 7;
@@ -140,6 +142,7 @@
             // txtAmount
             // 
             this.txtAmount.Location = new System.Drawing.Point(178, 125);
+            this.txtAmount.MaxLength = 4;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(180, 20);
             this.txtAmount.TabIndex = 8;
@@ -147,6 +150,7 @@
             // txtPrice
             // 
             this.txtPrice.Location = new System.Drawing.Point(178, 156);
+            this.txtPrice.MaxLength = 6;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(181, 20);
             this.txtPrice.TabIndex = 9;
@@ -154,6 +158,7 @@
             // txtSupplier
             // 
             this.txtSupplier.Location = new System.Drawing.Point(178, 189);
+            this.txtSupplier.MaxLength = 4;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(181, 20);
             this.txtSupplier.TabIndex = 10;
@@ -192,6 +197,7 @@
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(212, 47);
+            this.txtSearch.MaxLength = 20;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(190, 20);
             this.txtSearch.TabIndex = 14;
@@ -210,6 +216,7 @@
             // 
             this.txtStockId.Enabled = false;
             this.txtStockId.Location = new System.Drawing.Point(177, 25);
+            this.txtStockId.MaxLength = 4;
             this.txtStockId.Name = "txtStockId";
             this.txtStockId.Size = new System.Drawing.Size(181, 20);
             this.txtStockId.TabIndex = 16;

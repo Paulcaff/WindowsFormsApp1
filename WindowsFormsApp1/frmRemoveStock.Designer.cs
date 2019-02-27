@@ -73,13 +73,14 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(40, 78);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 13);
+            this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Stock Name / Stock ID";
+            this.label1.Text = "Stock Name ";
             // 
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(195, 71);
+            this.txtSearch.MaxLength = 20;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(161, 20);
             this.txtSearch.TabIndex = 2;
@@ -103,7 +104,6 @@
             this.grdData.Size = new System.Drawing.Size(400, 150);
             this.grdData.TabIndex = 5;
             this.grdData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);
-         
             // 
             // label2
             // 

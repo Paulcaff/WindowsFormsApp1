@@ -139,6 +139,11 @@
             // txtReceived
             // 
             this.txtReceived.Location = new System.Drawing.Point(200, 444);
+            this.txtReceived.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.txtReceived.Name = "txtReceived";
             this.txtReceived.Size = new System.Drawing.Size(90, 20);
             this.txtReceived.TabIndex = 11;

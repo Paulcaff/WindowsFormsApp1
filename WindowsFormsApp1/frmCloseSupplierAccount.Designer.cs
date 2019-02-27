@@ -73,13 +73,14 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(34, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Supplier Name / ID";
+            this.label1.Text = "Supplier Name ";
             // 
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(215, 69);
+            this.txtSearch.MaxLength = 20;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(174, 20);
             this.txtSearch.TabIndex = 2;

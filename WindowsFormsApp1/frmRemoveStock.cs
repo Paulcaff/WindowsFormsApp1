@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
         {
             DataSet ds = new DataSet();
 
-            grdData.DataSource = Stock.getAvailableStock(ds, txtSearch.Text).Tables["stk"];
+            grdData.DataSource = Stock.getAvailableStock(ds, txtSearch.Text.ToUpper()).Tables["stk"];
         }
 
         private void grdData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -56,9 +56,7 @@ namespace WindowsFormsApp1
         {
             int id = Convert.ToInt16(txtStockId.Text);
             string name = txtStockName.Text;
-
-            MessageBox.Show("Here");
-
+            
             //connect to the db
             OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
@@ -78,6 +76,7 @@ namespace WindowsFormsApp1
             txtSearch.Clear();
             txtStockId.Clear();
             txtStockName.Clear();
+            grdData.DataSource = null;
         }
 
         

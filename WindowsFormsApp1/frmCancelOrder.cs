@@ -50,13 +50,13 @@ namespace WindowsFormsApp1
             int id = Convert.ToInt16(grdData.Rows[grdData.CurrentCell.RowIndex].Cells[0].Value.ToString());
                  
             DataSet ds = new DataSet();
-            grdDataOrders.DataSource = Order.getOrders(ds, id).Tables["stk"];
+            grdDataOrders.DataSource = Order.getOrdersWithSupplierName(ds, id).Tables["stk"];
         }
 
         private void grdDataOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             
-            int id = Convert.ToInt16(grdDataOrders.Rows[grdDataOrders.CurrentCell.RowIndex].Cells[0].Value.ToString());
+            int id = Convert.ToInt16(grdDataOrders.Rows[grdDataOrders.CurrentCell.RowIndex].Cells[3].Value.ToString());
 
             DataSet ds = new DataSet();
 
@@ -66,8 +66,8 @@ namespace WindowsFormsApp1
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Boolean delete = true;
-            int id = Convert.ToInt16(grdDataOrders.Rows[grdDataOrders.CurrentCell.RowIndex].Cells[0].Value.ToString());
-            float refund = float.Parse(grdDataOrders.Rows[grdDataOrders.CurrentCell.RowIndex].Cells[3].Value.ToString());
+            int id = Convert.ToInt16(grdDataOrders.Rows[grdDataOrders.CurrentCell.RowIndex].Cells[3].Value.ToString());
+            float refund = float.Parse(grdDataOrders.Rows[grdDataOrders.CurrentCell.RowIndex].Cells[2].Value.ToString());
             int suppid = Convert.ToInt16(grdData.Rows[grdData.CurrentCell.RowIndex].Cells[0].Value.ToString());
             float balance = float.Parse(grdData.Rows[grdData.CurrentCell.RowIndex].Cells[2].Value.ToString());
             float newBalance = balance - refund;

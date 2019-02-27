@@ -138,6 +138,32 @@ namespace WindowsFormsApp1
             return ds;
         }
 
+        public static DataSet getOrdersWithSupplierName(DataSet ds, int id)
+        {
+
+            //connect to the db
+            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+
+            //define Sql Command
+            //String strSQL = "Select From Orders Where SupplierId = " + id + " AND Status = 'O'";
+            String strSQL = "SELECT ORDERS.ORDERDATE,SUPPLIER.SUPPLIERNAME,ORDERS.ORDERVALUE,ORDERS.SUPPLIERID FROM ORDERS LEFT JOIN SUPPLIER ON ORDERS.SUPPLIERID = SUPPLIER.SUPPLIERID WHERE SUPPLIER.SUPPLIERID = "+id+" AND ORDERS.STATUS = 'O'";
+            //Execute Query
+            OracleCommand cmd = new OracleCommand(strSQL, connect);
+
+            //create oracle adapter
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            //Fill The Dataset with query result;
+            da.Fill(ds, "stk");
+
+            //Close Db
+            connect.Close();
+
+
+            //return Query Result
+            return ds;
+        }
+
 
 
 
