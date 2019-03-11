@@ -108,7 +108,7 @@ namespace WindowsFormsApp1
                     if (StockId == present)
                     {
                         grdDataCart.Rows[i].Cells[4].Value = Convert.ToInt16(grdDataCart.Rows[i].Cells[4].Value) + quantity;
-                        grdDataCart.Rows[i].Cells[5].Value = Convert.ToInt16(grdDataCart.Rows[i].Cells[5].Value) + (price * quantity);
+                        grdDataCart.Rows[i].Cells[5].Value = float.Parse(grdDataCart.Rows[i].Cells[5].Value.ToString()) + (price * quantity);
                         float balance = float.Parse(txtBalance.Text) + (price * quantity);
                         txtBalance.Text = balance.ToString();
 

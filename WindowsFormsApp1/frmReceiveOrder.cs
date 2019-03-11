@@ -147,7 +147,7 @@ namespace WindowsFormsApp1
                             DataSet ds = new DataSet();
                             grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
 
-                            grdDataOrder.Hide();
+                            
 
                             
 
