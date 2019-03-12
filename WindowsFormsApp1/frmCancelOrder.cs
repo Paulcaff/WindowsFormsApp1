@@ -109,8 +109,8 @@ namespace WindowsFormsApp1
                     command.Connection = connection;
                     command.Transaction = transaction;
 
-                    //try
-                   // {
+                    try
+                    {
                         //microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=netframework-4.7.2
 
 
@@ -144,7 +144,7 @@ namespace WindowsFormsApp1
 
 
 
-                   /* }
+                    }
 
 
                     catch (Exception ex)
@@ -165,7 +165,7 @@ namespace WindowsFormsApp1
                             Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
                             Console.WriteLine("  Message: {0}", ex2.Message);
                         }
-                    }*/
+                    }
 
                 }
             
@@ -177,7 +177,7 @@ namespace WindowsFormsApp1
         }
             else
             {
-                MessageBox.Show("This cannot be deleted as order has been received");
+                MessageBox.Show("This cannot be deleted as order has been partially received");
             }
 
             txtSupplierName.Clear();
