@@ -79,6 +79,7 @@ namespace WindowsFormsApp1
                 {
                     N[i] = getMonth(currentMonth);
                     M[i] = 0;
+
                     MessageBox.Show("IF " + i);
                 }
                 else
