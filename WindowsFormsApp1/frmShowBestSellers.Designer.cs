@@ -47,7 +47,7 @@
             this.mnuExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1318, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(689, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -86,16 +86,15 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chtData.Series.Add(series1);
-            this.chtData.Size = new System.Drawing.Size(1306, 497);
+            this.chtData.Size = new System.Drawing.Size(636, 497);
             this.chtData.TabIndex = 2;
             this.chtData.Text = "chart1";
-           
             // 
             // frmShowBestSellers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1318, 685);
+            this.ClientSize = new System.Drawing.Size(689, 685);
             this.Controls.Add(this.chtData);
             this.Controls.Add(this.cboYears);
             this.Controls.Add(this.menuStrip1);

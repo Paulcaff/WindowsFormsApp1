@@ -54,6 +54,7 @@ namespace WindowsFormsApp1
         private void cboYears_SelectedIndexChanged(object sender, EventArgs e)
         {
                 int year = Convert.ToInt32(cboYears.Text.Substring(2, 2));
+                
 
                 String strSQL = "SELECt SUM(OrderValue), To_CHAR(OrderDate, 'MM')  FROM Orders WHERE OrderDate LIKE '%" + year + "' GROUP BY To_CHAR(OrderDate, 'MM') ORDER BY To_CHAR(OrderDate, 'MM')";
                 //String strSQL = "SELECt To_CHAR(OrderDate, 'MM'), SUM(OrderValue) FROM Orders WHERE OrderDate LIKE '%19' GROUP BY To_CHAR(OrderDate, 'MM') ORDER BY To_CHAR(OrderDate, 'MM')";
@@ -67,15 +68,27 @@ namespace WindowsFormsApp1
                 da.Fill(dt);
                 myConn.Close();
 
-                string[] N = new string[dt.Rows.Count];
-                decimal[] M = new decimal[dt.Rows.Count];
+                string[] N = new string[dt.Rows.Count];            
+                decimal[] M = new decimal[dt.Rows.Count];            
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < 12; i++)
                 {
+                int currentMonth = i+1;
 
-                    N[i] = getMonth(Convert.ToInt32(dt.Rows[i][1]));
-                    M[i] = Convert.ToDecimal(dt.Rows[i][0]);
+                if (currentMonth != (i + 1))
+                {
+                    N[i] = getMonth(currentMonth);
+                    M[i] = 0;
+                    MessageBox.Show("IF " + i);
                 }
+                else
+                {
+                    N[i] = getMonth(currentMonth);
+
+                    M[i] = Convert.ToDecimal(dt.Rows[i][0]);
+                    MessageBox.Show("ELSE " + i);
+                }
+            }
 
                 //order the arrays N and M
 
