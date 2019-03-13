@@ -36,7 +36,6 @@
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.cboYears = new System.Windows.Forms.ComboBox();
             this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.lbYear = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +47,7 @@
             this.mnuExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(508, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1318, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -87,25 +86,16 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chtData.Series.Add(series1);
-            this.chtData.Size = new System.Drawing.Size(484, 424);
+            this.chtData.Size = new System.Drawing.Size(1306, 497);
             this.chtData.TabIndex = 2;
             this.chtData.Text = "chart1";
-            // 
-            // lbYear
-            // 
-            this.lbYear.AutoSize = true;
-            this.lbYear.Location = new System.Drawing.Point(348, 43);
-            this.lbYear.Name = "lbYear";
-            this.lbYear.Size = new System.Drawing.Size(35, 13);
-            this.lbYear.TabIndex = 3;
-            this.lbYear.Text = "label1";
+           
             // 
             // frmShowBestSellers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 528);
-            this.Controls.Add(this.lbYear);
+            this.ClientSize = new System.Drawing.Size(1318, 685);
             this.Controls.Add(this.chtData);
             this.Controls.Add(this.cboYears);
             this.Controls.Add(this.menuStrip1);
@@ -128,6 +118,5 @@
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.ComboBox cboYears;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
-        private System.Windows.Forms.Label lbYear;
     }
 }
