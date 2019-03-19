@@ -57,7 +57,6 @@ namespace WindowsFormsApp1
                 
 
                 String strSQL = "SELECt SUM(OrderValue), To_CHAR(OrderDate, 'MM')  FROM Orders WHERE OrderDate LIKE '%" + year + "' GROUP BY To_CHAR(OrderDate, 'MM') ORDER BY To_CHAR(OrderDate, 'MM')";
-                //String strSQL = "SELECt To_CHAR(OrderDate, 'MM'), SUM(OrderValue) FROM Orders WHERE OrderDate LIKE '%19' GROUP BY To_CHAR(OrderDate, 'MM') ORDER BY To_CHAR(OrderDate, 'MM')";
                 DataTable dt = new DataTable();
 
                 OracleConnection myConn = new OracleConnection(DBConnect.oradb);
@@ -68,29 +67,27 @@ namespace WindowsFormsApp1
                 da.Fill(dt);
                 myConn.Close();
 
-                string[] N = new string[dt.Rows.Count];            
-                decimal[] M = new decimal[dt.Rows.Count];            
+                Decimal[] Vals= new decimal[12];            
+                string[] Months = new string[12];
 
-            for (int i = 0; i < 12; i++)
-                {
-                int currentMonth = i+1;
-
-                if (currentMonth != (i + 1))
-                {
-                    N[i] = getMonth(currentMonth);
-                    M[i] = 0;
-
-                    MessageBox.Show("IF " + i);
-                }
-                else
-                {
-                    N[i] = getMonth(currentMonth);
-
-                    M[i] = Convert.ToDecimal(dt.Rows[i][0]);
-                    MessageBox.Show("ELSE " + i);
-                }
+            for(int i = 1; i <= 12; i++)
+            {
+                Months[i - 1] = getMonth(i);
             }
 
+            /*
+            for (int i = 1; i <= 12; i++)
+            {
+                Vals[i - 1] = 0;
+            }
+            */
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Vals[Convert.ToInt32(dt.Rows[i][1])-1] = Convert.ToDecimal(dt.Rows[i][0]);
+            }
+            
+                
                 //order the arrays N and M
 
                 chtData.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
@@ -100,7 +97,7 @@ namespace WindowsFormsApp1
                 chtData.Series["Series1"]["PointWidth"] = ".5";
 
                 chtData.Series["Series1"]["PixelPointWidth"] = "20";
-                chtData.Series[0].Points.DataBindXY(N, M);
+                chtData.Series[0].Points.DataBindXY(Months, Vals);
                 chtData.ChartAreas["ChartArea1"].AxisX.LabelStyle.Format = "C";
 
             //chtSales.Series[0].Points[0] = "XXX";
