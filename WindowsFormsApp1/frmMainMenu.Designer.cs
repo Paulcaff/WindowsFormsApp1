@@ -48,10 +48,7 @@
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.label1 = new System.Windows.Forms.Label();
-            this.grdData = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.SuspendLayout();
             // 
             // mnuStock
@@ -177,15 +174,15 @@
             // mnuShowBestSellers
             // 
             this.mnuShowBestSellers.Name = "mnuShowBestSellers";
-            this.mnuShowBestSellers.Size = new System.Drawing.Size(173, 22);
-            this.mnuShowBestSellers.Text = "Show Best Sellers";
+            this.mnuShowBestSellers.Size = new System.Drawing.Size(206, 22);
+            this.mnuShowBestSellers.Text = "Yearly Revenue Analysis";
             this.mnuShowBestSellers.Click += new System.EventHandler(this.mnuShowBestSellers_Click);
             // 
             // mnuShowWorstSellers
             // 
             this.mnuShowWorstSellers.Name = "mnuShowWorstSellers";
-            this.mnuShowWorstSellers.Size = new System.Drawing.Size(173, 22);
-            this.mnuShowWorstSellers.Text = "Show Worst Sellers";
+            this.mnuShowWorstSellers.Size = new System.Drawing.Size(206, 22);
+            this.mnuShowWorstSellers.Text = "Show Stock Performance";
             this.mnuShowWorstSellers.Click += new System.EventHandler(this.mnuShowWorstSellers_Click);
             // 
             // mnuExit
@@ -220,31 +217,11 @@
             this.label1.Text = "PubSpace";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // grdData
-            // 
-            this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdData.Location = new System.Drawing.Point(46, 168);
-            this.grdData.Name = "grdData";
-            this.grdData.Size = new System.Drawing.Size(438, 179);
-            this.grdData.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(451, 135);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.grdData);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -253,7 +230,6 @@
             this.Load += new System.EventHandler(this.frmMainMenu_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,8 +257,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView grdData;
-        private System.Windows.Forms.Button button1;
     }
 }
 

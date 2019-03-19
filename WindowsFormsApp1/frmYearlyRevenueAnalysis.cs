@@ -11,17 +11,17 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class frmShowBestSellers : Form
+    public partial class frmYearlyRevenueAnalysis : Form
     {
         
 
         frmMainMenu parent;
-        public frmShowBestSellers()
+        public frmYearlyRevenueAnalysis()
         {
             InitializeComponent();
         }
 
-        public frmShowBestSellers(frmMainMenu Parent)
+        public frmYearlyRevenueAnalysis(frmMainMenu Parent)
         {
             InitializeComponent();
             parent = Parent;

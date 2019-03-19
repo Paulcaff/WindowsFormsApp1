@@ -112,14 +112,14 @@ namespace WindowsFormsApp1
         private void mnuShowBestSellers_Click(object sender, EventArgs e)
         {
             this.Hide();
-            frmShowBestSellers nextform = new frmShowBestSellers(this);
+            frmYearlyRevenueAnalysis nextform = new frmYearlyRevenueAnalysis(this);
             nextform.Show();
         }
 
         private void mnuShowWorstSellers_Click(object sender, EventArgs e)
         {
             this.Hide();
-            frmShowWorstSellers nextform = new frmShowWorstSellers(this);
+            frmShowStockPerformance nextform = new frmShowStockPerformance(this);
             nextform.Show();
         }
 
@@ -137,11 +137,7 @@ namespace WindowsFormsApp1
 
         private void frmMainMenu_Load(object sender, EventArgs e)
         {
-            
-            //create instance of data set
-            DataSet ds = new DataSet();
-
-            grdData.DataSource = Stock.getAllStock(ds).Tables["stk"];
+           
         }
 
         private void button1_Click(object sender, EventArgs e)

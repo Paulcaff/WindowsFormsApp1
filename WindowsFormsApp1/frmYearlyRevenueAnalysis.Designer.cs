@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class frmShowWorstSellers
+    partial class frmYearlyRevenueAnalysis
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuBack = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnShowWorstSellers = new System.Windows.Forms.Button();
+            this.cboYears = new System.Windows.Forms.ComboBox();
+            this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -42,7 +47,7 @@
             this.mnuExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(238, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(689, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -60,27 +65,46 @@
             this.mnuExit.Text = "Exit";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
-            // btnShowWorstSellers
+            // cboYears
             // 
-            this.btnShowWorstSellers.Location = new System.Drawing.Point(23, 72);
-            this.btnShowWorstSellers.Name = "btnShowWorstSellers";
-            this.btnShowWorstSellers.Size = new System.Drawing.Size(192, 53);
-            this.btnShowWorstSellers.TabIndex = 1;
-            this.btnShowWorstSellers.Text = "Show Worst Sellers";
-            this.btnShowWorstSellers.UseVisualStyleBackColor = true;
+            this.cboYears.FormattingEnabled = true;
+            this.cboYears.Location = new System.Drawing.Point(45, 37);
+            this.cboYears.Name = "cboYears";
+            this.cboYears.Size = new System.Drawing.Size(194, 21);
+            this.cboYears.TabIndex = 1;
+            this.cboYears.SelectedIndexChanged += new System.EventHandler(this.cboYears_SelectedIndexChanged);
             // 
-            // frmShowWorstSellers
+            // chtData
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chtData.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chtData.Legends.Add(legend1);
+            this.chtData.Location = new System.Drawing.Point(12, 92);
+            this.chtData.Name = "chtData";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chtData.Series.Add(series1);
+            this.chtData.Size = new System.Drawing.Size(636, 497);
+            this.chtData.TabIndex = 2;
+            this.chtData.Text = "chart1";
+            // 
+            // frmShowBestSellers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(238, 237);
-            this.Controls.Add(this.btnShowWorstSellers);
+            this.ClientSize = new System.Drawing.Size(689, 685);
+            this.Controls.Add(this.chtData);
+            this.Controls.Add(this.cboYears);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmShowWorstSellers";
-            this.Text = "Show Worst Sellers";
+            this.Name = "frmShowBestSellers";
+            this.Text = "Show Best Sellers";
+            this.Load += new System.EventHandler(this.frmShowBestSellers_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -91,6 +115,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuBack;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
-        private System.Windows.Forms.Button btnShowWorstSellers;
+        private System.Windows.Forms.ComboBox cboYears;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
     }
 }

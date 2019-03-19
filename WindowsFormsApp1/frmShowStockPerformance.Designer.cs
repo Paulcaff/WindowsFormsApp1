@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class frmShowBestSellers
+    partial class frmShowStockPerformance
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuBack = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.cboYears = new System.Windows.Forms.ComboBox();
+            this.radioBest = new System.Windows.Forms.RadioButton();
+            this.radioWorst = new System.Windows.Forms.RadioButton();
+            this.cboYear = new System.Windows.Forms.ComboBox();
             this.chtData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).BeginInit();
@@ -47,7 +49,7 @@
             this.mnuExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(689, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(869, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -65,14 +67,37 @@
             this.mnuExit.Text = "Exit";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
-            // cboYears
+            // radioBest
             // 
-            this.cboYears.FormattingEnabled = true;
-            this.cboYears.Location = new System.Drawing.Point(45, 37);
-            this.cboYears.Name = "cboYears";
-            this.cboYears.Size = new System.Drawing.Size(194, 21);
-            this.cboYears.TabIndex = 1;
-            this.cboYears.SelectedIndexChanged += new System.EventHandler(this.cboYears_SelectedIndexChanged);
+            this.radioBest.AutoSize = true;
+            this.radioBest.Checked = true;
+            this.radioBest.Location = new System.Drawing.Point(433, 39);
+            this.radioBest.Name = "radioBest";
+            this.radioBest.Size = new System.Drawing.Size(80, 17);
+            this.radioBest.TabIndex = 1;
+            this.radioBest.TabStop = true;
+            this.radioBest.Text = "Best Sellers";
+            this.radioBest.UseVisualStyleBackColor = true;
+            // 
+            // radioWorst
+            // 
+            this.radioWorst.AutoSize = true;
+            this.radioWorst.Location = new System.Drawing.Point(520, 39);
+            this.radioWorst.Name = "radioWorst";
+            this.radioWorst.Size = new System.Drawing.Size(87, 17);
+            this.radioWorst.TabIndex = 2;
+            this.radioWorst.TabStop = true;
+            this.radioWorst.Text = "Worst Sellers";
+            this.radioWorst.UseVisualStyleBackColor = true;
+            // 
+            // cboYear
+            // 
+            this.cboYear.FormattingEnabled = true;
+            this.cboYear.Location = new System.Drawing.Point(70, 39);
+            this.cboYear.Name = "cboYear";
+            this.cboYear.Size = new System.Drawing.Size(216, 21);
+            this.cboYear.TabIndex = 3;
+            this.cboYear.SelectedIndexChanged += new System.EventHandler(this.cboYear_SelectedIndexChanged);
             // 
             // chtData
             // 
@@ -80,28 +105,30 @@
             this.chtData.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chtData.Legends.Add(legend1);
-            this.chtData.Location = new System.Drawing.Point(12, 92);
+            this.chtData.Location = new System.Drawing.Point(12, 93);
             this.chtData.Name = "chtData";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chtData.Series.Add(series1);
-            this.chtData.Size = new System.Drawing.Size(636, 497);
-            this.chtData.TabIndex = 2;
+            this.chtData.Size = new System.Drawing.Size(845, 463);
+            this.chtData.TabIndex = 4;
             this.chtData.Text = "chart1";
             // 
-            // frmShowBestSellers
+            // frmShowStockPerformance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 685);
+            this.ClientSize = new System.Drawing.Size(869, 568);
             this.Controls.Add(this.chtData);
-            this.Controls.Add(this.cboYears);
+            this.Controls.Add(this.cboYear);
+            this.Controls.Add(this.radioWorst);
+            this.Controls.Add(this.radioBest);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmShowBestSellers";
-            this.Text = "Show Best Sellers";
-            this.Load += new System.EventHandler(this.frmShowBestSellers_Load);
+            this.Name = "frmShowStockPerformance";
+            this.Text = "Show Worst Sellers";
+            this.Load += new System.EventHandler(this.frmShowStockPerformance_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtData)).EndInit();
@@ -115,7 +142,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuBack;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
-        private System.Windows.Forms.ComboBox cboYears;
+        private System.Windows.Forms.RadioButton radioBest;
+        private System.Windows.Forms.RadioButton radioWorst;
+        private System.Windows.Forms.ComboBox cboYear;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtData;
     }
 }

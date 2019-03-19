@@ -97,17 +97,17 @@
     <Compile Include="frmReturnStock.Designer.cs">
       <DependentUpon>frmReturnStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmShowBestSellers.cs">
+    <Compile Include="frmYearlyRevenueAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmShowBestSellers.Designer.cs">
-      <DependentUpon>frmShowBestSellers.cs</DependentUpon>
+    <Compile Include="frmYearlyRevenueAnalysis.Designer.cs">
+      <DependentUpon>frmYearlyRevenueAnalysis.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmShowWorstSellers.cs">
+    <Compile Include="frmShowStockPerformance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmShowWorstSellers.Designer.cs">
-      <DependentUpon>frmShowWorstSellers.cs</DependentUpon>
+    <Compile Include="frmShowStockPerformance.Designer.cs">
+      <DependentUpon>frmShowStockPerformance.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUpdateStock.cs">
       <SubType>Form</SubType>
@@ -170,11 +170,11 @@
     <EmbeddedResource Include="frmReturnStock.resx">
       <DependentUpon>frmReturnStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmShowBestSellers.resx">
-      <DependentUpon>frmShowBestSellers.cs</DependentUpon>
+    <EmbeddedResource Include="frmYearlyRevenueAnalysis.resx">
+      <DependentUpon>frmYearlyRevenueAnalysis.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmShowWorstSellers.resx">
-      <DependentUpon>frmShowWorstSellers.cs</DependentUpon>
+    <EmbeddedResource Include="frmShowStockPerformance.resx">
+      <DependentUpon>frmShowStockPerformance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateStock.resx">
       <DependentUpon>frmUpdateStock.cs</DependentUpon>
