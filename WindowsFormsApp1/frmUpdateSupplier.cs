@@ -134,8 +134,7 @@ namespace WindowsFormsApp1
 
 
 
-                MessageBox.Show("" + supplierId + name + add1 + add2 + town + county + email + phone );
-
+                
                 //connect to the db
                 OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
@@ -152,6 +151,8 @@ namespace WindowsFormsApp1
              
                 //Close Db
                 connect.Close();
+
+                MessageBox.Show(name + " has been updated");
 
                 txtSearch.Clear();
                 txtSupplierId.Clear();

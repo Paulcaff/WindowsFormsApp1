@@ -90,7 +90,7 @@ namespace WindowsFormsApp1
                 int supplier = Convert.ToInt16(txtSupplier.Text);
                 
 
-                MessageBox.Show(""+StockId+name+description+amount+price+supplier);
+                
 
 
                 //connect to the db
@@ -98,7 +98,7 @@ namespace WindowsFormsApp1
 
                 //define Sql Command
                 String strSQL = "UPDATE Stock SET StockName = '" + name + "',Description = '" + description + "',Amount = " + amount + ", Price = " + price + ", SupplierId = " + supplier + ", Status = 'A' where StockId = " + StockId;
-                MessageBox.Show("Here");
+                
 
                 //Execute Query
                 OracleCommand cmd = new OracleCommand(strSQL, connect);
@@ -115,6 +115,8 @@ namespace WindowsFormsApp1
 
                 //Close Db
                 connect.Close();
+
+                MessageBox.Show("The Stock details have been updated and saved in the stock file");
                 
 
                 txtSearch.Clear();

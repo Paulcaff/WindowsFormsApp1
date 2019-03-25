@@ -73,6 +73,8 @@ namespace WindowsFormsApp1
             //Close Db
             connect.Close();
 
+            MessageBox.Show(name + " has been deleted");
+
             txtSearch.Clear();
             txtStockId.Clear();
             txtStockName.Clear();

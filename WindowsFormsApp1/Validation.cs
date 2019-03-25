@@ -192,7 +192,7 @@ namespace WindowsFormsApp1
 
             if (dr.Read())
             {
-                MessageBox.Show("this Supplier exists in the Supplier Database");
+               
                 valid = true;
             }
             else
