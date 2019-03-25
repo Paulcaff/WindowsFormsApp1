@@ -38,6 +38,9 @@ namespace WindowsFormsApp1
 
         private void frmReceiveOrder_Load(object sender, EventArgs e)
         {
+            label1.Hide();
+            label2.Hide();
+
             DataSet ds = new DataSet();
             grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
                        

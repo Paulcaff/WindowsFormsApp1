@@ -142,7 +142,7 @@ namespace WindowsFormsApp1
         {
             float deduction = float.Parse(grdDataCart.Rows[grdDataCart.CurrentCell.RowIndex].Cells[4].Value.ToString());
             float productTotal = float.Parse(grdDataCart.Rows[grdDataCart.CurrentCell.RowIndex].Cells[5].Value.ToString());
-            MessageBox.Show("DEDUCT" + deduction);
+            
             grdDataCart.Rows.Remove(grdDataCart.CurrentRow);
 
             float balance = float.Parse(txtBalance.Text) - (productTotal);
@@ -211,12 +211,7 @@ namespace WindowsFormsApp1
                             int StockId = Convert.ToInt16(grdDataCart.Rows[i].Cells[1].Value.ToString());
                             float price = float.Parse(grdDataCart.Rows[i].Cells[3].Value.ToString());
                             int quantity = Convert.ToInt16(grdDataCart.Rows[i].Cells[4].Value.ToString());
-
-
-                            MessageBox.Show("" + OrderId + " " + StockId + " " + price + " " + quantity);
-
-
-
+                                                       
                             command.CommandText =
                              "INSERT INTO OrderItems VALUES(" + OrderId + "," + StockId + "," + price + "," + quantity + ",'O',0)";
                             command.ExecuteNonQuery();
@@ -227,9 +222,7 @@ namespace WindowsFormsApp1
                         command.CommandText =
                             "UPDATE Supplier SET Balance = " + newBalance + "where SupplierId = " + SupplierId;
                         command.ExecuteNonQuery();
-
-                        MessageBox.Show("Commit next");
-
+                        
                         // Attempt to commit the transaction.
                         transaction.Commit();
 

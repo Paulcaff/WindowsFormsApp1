@@ -76,21 +76,18 @@ namespace WindowsFormsApp1
 
             for (int i = 0; i < grdDataItems.RowCount; i++)
             {
-                if (grdDataItems.Rows[i].Cells[3].Value.Equals("O"))
-                {
-                    MessageBox.Show("" + delete);
-
-                }
-                else
+                if (!grdDataItems.Rows[i].Cells[3].Value.Equals("O"))
                 {
                     delete = false;
-                    MessageBox.Show("" + delete);
+
                     break;
+
                 }
+                
 
             }
 
-            MessageBox.Show("AFTER LOOP" + delete);
+            
 
             if (delete)
             {

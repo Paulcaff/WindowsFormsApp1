@@ -91,6 +91,8 @@ namespace WindowsFormsApp1
                         //Close Db
                         connect.Close();
 
+                        MessageBox.Show(pay+" has been paid off the balance");
+
 
                         txtSupplierId.Clear();
                         txtSupplierName.Clear();

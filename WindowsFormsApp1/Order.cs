@@ -168,7 +168,7 @@ namespace WindowsFormsApp1
 
         public static void getOrderStatus(int orderid)
         {
-            MessageBox.Show("aaa" + orderid);
+            
             
             //Connect to DB
             OracleConnection connect = new OracleConnection(DBConnect.oradb);
@@ -193,9 +193,7 @@ namespace WindowsFormsApp1
                
 
             }
-            else {
-                MessageBox.Show("OOOOOO");
-            }
+            
 
            
 

@@ -40,6 +40,8 @@ namespace WindowsFormsApp1
         {
             txtSupplierId.Text = grdData.SelectedRows[0].Cells[0].Value.ToString();
             txtSupplierName.Text = grdData.SelectedRows[0].Cells[1].Value.ToString();
+           
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -53,28 +55,40 @@ namespace WindowsFormsApp1
         {
             int id = Convert.ToInt16(txtSupplierId.Text);
             string name = txtSupplierName.Text;
+            float balance = float.Parse(grdData.SelectedRows[0].Cells[9].Value.ToString());
+            MessageBox.Show("" + balance);
 
-            MessageBox.Show("Here");
 
-            //connect to the db
-            OracleConnection connect = new OracleConnection(DBConnect.oradb);
+            if (balance == 0)
+            {
 
-            //define Sql Command
-            String strSQL = "UPDATE Supplier SET Status = 'D' WHERE SupplierId =" + id;
+                //connect to the db
+                OracleConnection connect = new OracleConnection(DBConnect.oradb);
 
-            //Execute Query
-            OracleCommand cmd = new OracleCommand(strSQL, connect);
+                //define Sql Command
+                String strSQL = "UPDATE Supplier SET Status = 'D' WHERE SupplierId =" + id;
 
-            connect.Open();
+                //Execute Query
+                OracleCommand cmd = new OracleCommand(strSQL, connect);
 
-            cmd.ExecuteNonQuery();
+                connect.Open();
 
-            //Close Db
-            connect.Close();
+                cmd.ExecuteNonQuery();
 
-            txtSearch.Clear();
-            txtSupplierId.Clear();
-            txtSupplierName.Clear();
+                //Close Db
+                connect.Close();
+
+                MessageBox.Show(name + " has been deleted");
+
+                txtSearch.Clear();
+                txtSupplierId.Clear();
+                txtSupplierName.Clear();
+
+            }
+            else
+            {
+                MessageBox.Show("the balance has to be 0 to delete a supplier");
+            }
         }
     }
 }
