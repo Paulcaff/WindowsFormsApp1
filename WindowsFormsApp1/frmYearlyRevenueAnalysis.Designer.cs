@@ -67,6 +67,7 @@
             // 
             // cboYears
             // 
+            this.cboYears.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboYears.FormattingEnabled = true;
             this.cboYears.Location = new System.Drawing.Point(45, 37);
             this.cboYears.Name = "cboYears";
@@ -90,7 +91,7 @@
             this.chtData.TabIndex = 2;
             this.chtData.Text = "chart1";
             // 
-            // frmShowBestSellers
+            // frmYearlyRevenueAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -99,7 +100,7 @@
             this.Controls.Add(this.cboYears);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmShowBestSellers";
+            this.Name = "frmYearlyRevenueAnalysis";
             this.Text = "Show Best Sellers";
             this.Load += new System.EventHandler(this.frmShowBestSellers_Load);
             this.menuStrip1.ResumeLayout(false);

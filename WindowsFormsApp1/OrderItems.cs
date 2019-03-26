@@ -122,6 +122,21 @@ namespace WindowsFormsApp1
             //return Query Result
             return ds;
         }
+        public static DataTable getBestWorstSellers(DataTable DT,String Year, String SortOrder)
+        {
+
+            OracleConnection myConn = new OracleConnection(DBConnect.oradb);
+
+            String strSQL = "SELECT StockName, SUM(RECEIVEDSTOCK) AS Total FROM OrderItems I JOIN Stock S ON I.StockID = S.StockID JOIN ORDERS O ON O.ORDERID = I.ORDERID WHERE OrderDate LIKE '%" +
+                Year + "' GROUP BY StockName ORDER BY Total " + SortOrder;
+
+            OracleCommand cmd = new OracleCommand(strSQL, myConn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            da.Fill(DT);
+            myConn.Close();
+            return DT;
+        }
 
 
     }
