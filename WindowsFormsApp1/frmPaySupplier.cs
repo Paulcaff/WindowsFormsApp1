@@ -61,6 +61,7 @@ namespace WindowsFormsApp1
         private void btnPaySupplier_Click(object sender, EventArgs e)
         {
             Boolean valid = Validation.ValidateAmount(txtAmountToPay.Text);
+            MessageBox.Show("" + valid);
 
             if (valid)
             {
@@ -70,7 +71,7 @@ namespace WindowsFormsApp1
 
                 if (balance > 0)
                 {
-                    if (balance > pay)
+                    if (balance >= pay)
                     {
                         float remainder = balance - pay;
                         int id = Convert.ToInt16(txtSupplierId.Text);

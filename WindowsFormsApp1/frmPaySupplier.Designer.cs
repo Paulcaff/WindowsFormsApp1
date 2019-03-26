@@ -95,7 +95,7 @@
             // txtAmountToPay
             // 
             this.txtAmountToPay.Location = new System.Drawing.Point(230, 112);
-            this.txtAmountToPay.MaxLength = 6;
+            this.txtAmountToPay.MaxLength = 7;
             this.txtAmountToPay.Name = "txtAmountToPay";
             this.txtAmountToPay.Size = new System.Drawing.Size(158, 20);
             this.txtAmountToPay.TabIndex = 5;
@@ -135,6 +135,8 @@
             this.grdData.Location = new System.Drawing.Point(12, 78);
             this.grdData.Name = "grdData";
             this.grdData.ReadOnly = true;
+            this.grdData.RowHeadersVisible = false;
+            this.grdData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdData.Size = new System.Drawing.Size(495, 150);
             this.grdData.TabIndex = 9;
             this.grdData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);

@@ -56,8 +56,7 @@ namespace WindowsFormsApp1
             int id = Convert.ToInt16(txtSupplierId.Text);
             string name = txtSupplierName.Text;
             float balance = float.Parse(grdData.SelectedRows[0].Cells[9].Value.ToString());
-            MessageBox.Show("" + balance);
-
+            
 
             if (balance == 0)
             {

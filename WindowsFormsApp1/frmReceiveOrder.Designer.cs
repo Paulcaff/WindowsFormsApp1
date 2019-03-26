@@ -55,7 +55,7 @@
             this.mnuExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(640, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(526, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -100,7 +100,8 @@
             this.grdDataSuppliers.Location = new System.Drawing.Point(65, 39);
             this.grdDataSuppliers.Name = "grdDataSuppliers";
             this.grdDataSuppliers.ReadOnly = true;
-            this.grdDataSuppliers.Size = new System.Drawing.Size(304, 89);
+            this.grdDataSuppliers.RowHeadersVisible = false;
+            this.grdDataSuppliers.Size = new System.Drawing.Size(212, 89);
             this.grdDataSuppliers.TabIndex = 7;
             this.grdDataSuppliers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDataSuppliers_CellClick);
             // 
@@ -112,7 +113,8 @@
             this.grdDataOrder.Location = new System.Drawing.Point(65, 143);
             this.grdDataOrder.Name = "grdDataOrder";
             this.grdDataOrder.ReadOnly = true;
-            this.grdDataOrder.Size = new System.Drawing.Size(415, 80);
+            this.grdDataOrder.RowHeadersVisible = false;
+            this.grdDataOrder.Size = new System.Drawing.Size(282, 80);
             this.grdDataOrder.TabIndex = 8;
             this.grdDataOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDataOrder_CellClick);
             // 
@@ -124,7 +126,8 @@
             this.grdDataReceive.Location = new System.Drawing.Point(65, 243);
             this.grdDataReceive.Name = "grdDataReceive";
             this.grdDataReceive.ReadOnly = true;
-            this.grdDataReceive.Size = new System.Drawing.Size(304, 150);
+            this.grdDataReceive.RowHeadersVisible = false;
+            this.grdDataReceive.Size = new System.Drawing.Size(360, 150);
             this.grdDataReceive.TabIndex = 9;
             this.grdDataReceive.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDataReceive_CellClick);
             // 
@@ -180,7 +183,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 535);
+            this.ClientSize = new System.Drawing.Size(526, 535);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtOrdered);

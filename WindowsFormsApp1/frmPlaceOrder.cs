@@ -136,6 +136,8 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Not enough in stock to order or nothing been ordered");
             }
 
+            txtAmountOrder.Value = 0;
+
         }
 
         private void btnRemove_Click(object sender, EventArgs e)

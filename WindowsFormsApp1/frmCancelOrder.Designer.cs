@@ -94,6 +94,8 @@
             this.grdData.Location = new System.Drawing.Point(51, 82);
             this.grdData.Name = "grdData";
             this.grdData.ReadOnly = true;
+            this.grdData.RowHeadersVisible = false;
+            this.grdData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdData.Size = new System.Drawing.Size(295, 75);
             this.grdData.TabIndex = 3;
             this.grdData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);
@@ -106,6 +108,8 @@
             this.grdDataOrders.Location = new System.Drawing.Point(27, 174);
             this.grdDataOrders.Name = "grdDataOrders";
             this.grdDataOrders.ReadOnly = true;
+            this.grdDataOrders.RowHeadersVisible = false;
+            this.grdDataOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDataOrders.Size = new System.Drawing.Size(336, 150);
             this.grdDataOrders.TabIndex = 4;
             this.grdDataOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDataOrders_CellClick);
@@ -118,6 +122,8 @@
             this.grdDataItems.Location = new System.Drawing.Point(27, 330);
             this.grdDataItems.Name = "grdDataItems";
             this.grdDataItems.ReadOnly = true;
+            this.grdDataItems.RowHeadersVisible = false;
+            this.grdDataItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDataItems.Size = new System.Drawing.Size(335, 150);
             this.grdDataItems.TabIndex = 5;
             // 

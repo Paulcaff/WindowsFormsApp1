@@ -101,6 +101,8 @@
             this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdData.Location = new System.Drawing.Point(37, 116);
             this.grdData.Name = "grdData";
+            this.grdData.RowHeadersVisible = false;
+            this.grdData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdData.Size = new System.Drawing.Size(514, 150);
             this.grdData.TabIndex = 5;
             this.grdData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);

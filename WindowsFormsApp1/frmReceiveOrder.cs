@@ -43,7 +43,8 @@ namespace WindowsFormsApp1
 
             DataSet ds = new DataSet();
             grdDataSuppliers.DataSource = Supplier.getSupplierSummary(ds).Tables["stk"];
-                       
+            grdDataSuppliers.Columns[0].Visible = false;
+
         }
 
         private void grdDataSuppliers_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -53,6 +54,8 @@ namespace WindowsFormsApp1
 
             DataSet ds = new DataSet();
             grdDataOrder.DataSource = Order.getOrders(ds, id).Tables["stk"];
+            grdDataOrder.Columns[0].Visible = false;
+            grdDataOrder.Columns[2].Visible = false;
         }
 
         private void grdDataOrder_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -64,6 +67,7 @@ namespace WindowsFormsApp1
             DataSet ds = new DataSet();
            
             grdDataReceive.DataSource = OrderItems.getOrderItems(ds, id).Tables["stk"];
+            grdDataReceive.Columns[0].Visible = false;
 
         }
 
